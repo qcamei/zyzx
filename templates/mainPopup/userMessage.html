@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+    <style>
+        html,body{
+            font: 12px Microsoft YaHei, PMingLiU, Verdana, Arial, Helvetica, sans-serif;
+            width:100%;
+            height:100%;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            outline: none;
+        }
+        .userMessage{
+            width: 100%;
+            height:100%;
+            background: #fff;
+            cursor: default;
+            border-radius: 3px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.6);
+            position: relative;
+            border: 1px solid #999;
+            box-sizing: border-box;
+        }
+        .userMessage-top{
+            width: 100%;
+            height: 20%;
+            color: #fff;
+            background: rgba(37,188,145,0.8);
+            border-radius: 3px 3px 0 0;
+        }
+        .userMessage-title{
+           float: left;
+        }
+        .userMessage-title img{
+            padding-left: 10px;
+            vertical-align: sub;
+        }
+        .userMessage-title h3{
+            padding: 10px;
+            font-weight: 500;
+            display: inline-block;
+        }
+        .userMessage-center{
+            width: 100%;
+            height:62.5%;
+            box-sizing: border-box;
+            padding-top: 50px;
+        }
+        .userMessage-center h3{
+            padding-left: 50px;
+            color: #3c3c3c;
+            font-weight: 500;
+        }
+        .userMessage-bottom{
+            width: 100%;
+            height: 17.5%;
+            background: rgba(37,188,145,0.2);
+        }
+        .userMessage-bottom a{
+            float: right;
+            margin-right: 15px;
+            padding: 5px 30px;
+            border: 1px solid rgba(37,188,145,0.8);
+            line-height: 12px;
+            margin-top: 4px;
+            background: #fff;
+            text-decoration: none;
+            color: #3c3c3c;
+            border-radius: 3px;
+        }
+        .userMessage-bottom a:hover{
+            background: rgba(37,188,145,0.5);
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+<div class="userMessage">
+    <div class="userMessage-top">
+        <div class="userMessage-title">
+            <img src="">
+            <h3>切换账号</h3>
+        </div>
+        <div id="toolBar">
+            <div id="toolThree" ng-cloak>
+                <a id="close" title="关闭">
+                    <img src="../../../common/image/e1.png">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="userMessage-center">
+        <h3>是否注销登录并切换账号?</h3>
+    </div>
+    <div class="userMessage-bottom">
+        <a  class="userMessage-cancel">取消</a>
+        <a  class="userMessage-sure">确定</a>
+    </div>
+</div>
+<script src="../../../common/js/libs/jquery-3.0.0.min.js"></script>
+<script>
+    $(function () {
+        //拖动
+        $(".userMessage-top").on("mousedown",function () {
+            return uwnd.drag();
+        });
+        //阻止事件冒泡
+        $("#toolBar").on("mousedown",function (e) {
+            e.stopPropagation();
+        });
+        //禁止选中
+        document.onselectstart=new Function("event.returnValue=false;");
+        var where=location.search.split("?")[1];
+        if(where==="cancel"){
+            $(".userMessage-title h3").text("切换账号");
+            $(".userMessage-center h3").text("是否注销登录并切换账号?");
+            $(".userMessage-sure").on("click",function () {
+                uwnd.close("Cancellation");
+            });
+            $("#close,.userMessage-cancel").on("click",function () {
+                uwnd.close();
+            });
+        }else if(where==="close"){
+            $(".userMessage-title h3").text("退出程序");
+            $(".userMessage-center h3").text("是否退出U-Cloud应用程序?");
+            $(".userMessage-sure").on("click",function () {
+                uwnd.close("close");
+            });
+            $("#close,.userMessage-cancel").on("click",function () {
+                uwnd.close();
+            });
+        }
+    });
+</script>
+</body>
+</html>

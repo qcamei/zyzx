@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+    <style>
+        html,body{
+            font: 12px Microsoft YaHei, PMingLiU, Verdana, Arial, Helvetica, sans-serif;
+            width:100%;
+            height:100%;
+            /*width:645px;*/
+            /*height:470px;*/
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            outline: none;
+        }
+        .mainSet{
+            width: 100%;
+            height:100%;
+            background: #fff;
+            cursor: default;
+            border-radius: 3px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.6);
+            position: relative;
+            border: 1px solid #999;
+            box-sizing: border-box;
+            overflow: hidden;
+
+        }
+        .mainSet-top{
+            width: 100%;
+            height: 8.5%;
+            color: #fff;
+            background: rgba(37,188,145,0.8);
+            border-radius: 3px 3px 0 0;
+        }
+        #toolBar #close.offClose{
+            position: relative;
+            right: 0;
+            top: 0;
+            z-index: 1002;
+        }
+        .mainSet-title{
+            float: left;
+        }
+        .mainSet-title img{
+            width: 16px;
+            height: 16px;
+            padding-left: 10px;
+            vertical-align: sub;
+        }
+        .mainSet-title h3{
+            padding: 10px;
+            font-weight: 500;
+            display: inline-block;
+        }
+        .mainSet-center{
+            width: 100%;
+            height:91.5%;
+            display: flex;
+            flex-direction: column;
+        }
+        .mainSet-center .mainSet-tab{
+            height: 40px;
+            background: rgba(140,230,218,0.2);
+        }
+        .mainSet-center .mainSet-tab ul{
+            list-style: none;
+            width: 100%;
+            height: 40px;
+        }
+        .mainSet-center .mainSet-tab ul li{
+            float: left;
+            line-height: 40px;
+            font-size: 14px;
+            width: 25%;
+            text-align: center;
+        }
+        .mainSet-center .mainSet-tab ul li:hover{
+            background: rgba(140,230,218,0.4);
+            /*color: #fff;*/
+        }
+        .mainSet-tab-Active{
+            background: #fff !important;
+            color: #25bc91 !important;
+        }
+        .mainSet-list{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mainSet-list .mainSet-list-one,
+        .mainSet-list .mainSet-list-tow,
+        .mainSet-list .mainSet-list-second,
+        .mainSet-list .mainSet-list-three{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .offlineBack{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .offlineBack .offlineBack-btn{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .offlineBack .offlineBack-btn a{
+            display: inline-block;
+            font-size: 14px;
+            padding: 5px 30px;
+            background: #fff;
+            color: #25bc91;
+        }
+        .offlineBack .offlineBack-btn a:hover{
+            background: #25bc91;
+            color: #fff;
+        }
+        .mainSet-list-tow,.mainSet-list-three{
+            display: none;
+        }
+
+        .nowLoadList-ul{
+            width: 100%;
+            list-style: none;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .nowLoadList-ul::-webkit-scrollbar {
+            width:8px;
+        }
+        .nowLoadList-ul::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .nowLoadList-ul::-webkit-scrollbar-thumb {
+            background-color: #8ce6da;
+            border-radius: 4px;
+        }
+        .nowLoadList-ul::-webkit-scrollbar-thumb:hover{
+            background-color:#28b992;
+        }
+        .nowLoadList-ul li{
+            width: 100%;
+            height: 56px;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            box-sizing: border-box;
+        }
+        .nowLoadList-ul li:hover{
+            background: rgba(109,146,199,0.04);
+        }
+        .nowLoadList-left{
+            flex:1;
+            padding-left: 20px;
+            padding-top: 15px;
+        }
+        .nowLoadList-img{
+            float: left;
+            width: 32px;
+            height:43px;
+            margin-top: -8px;
+        }
+
+        .nowLoadList-name{
+            float: left;
+            padding-left: 12px;
+        }
+        .nowLoadList-name h3{
+            font-size: 12px;
+            margin-bottom: 4px;
+            font-weight: 400;
+            line-height: 14px;
+        }
+        .nowLoadList-name p{
+            display: inline-block;
+            font-size: 12px;
+            color:#bbb;
+        }
+
+        .nowLoadList-right{
+            width: 356px;
+            padding-right: 10px;
+        }
+        .nowLoadList-progress{
+            padding-top: 15px;
+            float: left;
+        }
+        .loadProgress{
+            width: 150px;
+            height: 10px;
+            border: 1px solid rgba(56,113,181,0.7);
+        }
+        .loadProgress .loadProgress-striped{
+            background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+            background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+            background-color: #4176b7;
+            float: left;
+            height: 100%;
+            /*transition: width 0.6s ease;*/
+        }
+        .nowLoadList-progress span{
+            color: #000;
+            margin-top: 5px;
+            display: inline-block;
+        }
+        .nowLoadList-progress i{
+            font-style: normal;
+            float: right;
+        }
+        .nowLoadList-tool{
+            padding-top: 20px;
+            padding-left: 66px;
+            float: left;
+            position: relative;
+        }
+        .nowLoadList-tool .btnBackGround{
+            position: absolute;
+            top:20px;
+            left:66px;
+            width: 115px;
+            height: 19px;
+            background: rgba(255,255,255,0.8);
+            z-index: 5;
+            box-sizing: border-box;
+            opacity: 0;
+        }
+        .nowLoadList-tool button{
+            border: 0;
+            outline: none;
+            width: 16px;
+            height:16px;
+            background-color: transparent;
+            cursor: pointer;
+            background-position: 0 -16px;
+        }
+        .nowLoadList-tool button:hover{
+            background-position: 0 0;
+        }
+        .nowLoadList-tool .loadStart{
+            background-image: url(../../images/start.png);
+            background-repeat: no-repeat;
+        }
+        .nowLoadList-tool .loadStop{
+            background-image: url(../../images/pause.png);
+            background-repeat: no-repeat;
+        }
+        .nowLoadList-tool .loadCancel{
+            background-image: url(../../images/delete.png);
+            background-repeat: no-repeat;
+            margin-left: 30px;
+        }
+        .nowLoadList-tool .loadFile{
+            background-image: url(../../images/openFile.png);
+            background-repeat: no-repeat;
+            margin-left: 30px;
+            font-size: 0;
+            vertical-align: top;
+        }
+        .nowLoadList-text{
+            padding: 10px;
+        }
+        .nowLoadList-text-right{
+            float: right;
+            height: 36px;
+            padding-right: 18px;
+            padding-top: 4px;
+            box-sizing: border-box;
+        }
+        .nowLoadList-text-right button{
+            outline: none;
+            padding: 3px 8px;
+            border: 1px solid rgba(84,122,185,0.4);
+            background: #fff;
+            font-family: inherit;
+            border-radius: 4px;
+        }
+        .nowLoadList-text-right button:hover{
+            background: rgba(84,122,185,0.1);
+        }
+        .nowLoadList-text-btnStop,.nowLoadList-text-btnStart{
+            margin-right: 5px;
+        }
+        .nowLoadList-text-btnStart{
+            display: none;
+        }
+        .nowLoadList-ul li.modelNowLoad{
+            display: none;
+        }
+        .mainSet-list-three{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .mainSet-list-three .nowLoadList-ul li.historyDone{
+            background: rgba(109,146,199,0.1) !important;
+        }
+        .mainSet-list-three .nowLoadList-ul li.historyCancel{
+            background: rgba(255,255,255,1) !important;
+        }
+
+        .comLoadList-text{
+            width: 100%;
+            height: 36px;
+            border-bottom: 1px solid #eaeaea;
+            box-sizing: border-box;
+            padding-left: 15px;
+        }
+
+        .comLoadList-text-left{
+            padding-left: 30px;
+            float: left;
+            background-image: url(../../images/completeAll.png);
+            background-repeat: no-repeat;
+            background-position: 6px 10px;
+            line-height: 36px;
+            font-size: 16px;
+        }
+        .comLoadList-text-right{
+            float: right;
+            height: 36px;
+            padding-right: 18px;
+            padding-top: 4px;
+            box-sizing: border-box;
+        }
+        .comLoadList-text-right button{
+            outline: none;
+            padding: 3px 8px;
+            border: 1px solid rgba(84,122,185,0.4);
+            background: #fff;
+            font-family: inherit;
+            border-radius: 4px;
+        }
+        .comLoadList-text-right button:hover{
+            background: rgba(84,122,185,0.1);
+        }
+        .comLoadList-text-right-btn1{
+            margin-right: 5px;
+        }
+        .comLoadList-right{
+            width: 450px;
+            padding-top: 20px;
+        }
+        .comLoadList-right .comLoadList-time{
+            display: inline-block;
+            min-width: 120px;
+            color: #bbb;
+        }
+        .comLoadList-right .comLoadList-complete{
+            display: inline-block;
+            padding-left: 16px;
+            color: #aaa;
+            background-repeat: no-repeat;
+            background-position:3px 3px;
+            margin-left: 30px;
+        }
+        .comLoadList-right-loadBtn{
+            float: right;
+            padding-right: 80px;
+            padding-top: 3px;
+        }
+        .comLoadList-right-loadBtn button{
+            border: 0;
+            outline: none;
+            width: 16px;
+            height:16px;
+            background-color: transparent;
+            cursor: pointer;
+            background-position: 0 -16px;
+        }
+        .comLoadList-right-loadBtn button:hover{
+            background-position: 0 0;
+        }
+        .comLoadList-right-loadBtn .loadRepeat{
+            background-image: url(../../images/resume.png);
+            background-repeat: no-repeat;
+        }
+        .comLoadList-right-loadBtn .loadFile{
+            background-image: url(../../images/openFile.png);
+            background-repeat: no-repeat;
+            margin-left: 30px;
+            font-size: 0;
+            vertical-align: top;
+        }
+        .comLoadList-right-loadBtn .loadCancel{
+            background-image: url(../../images/dele.png);
+            background-repeat: no-repeat;
+            margin-left: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="mainSet">
+    <div class="mainSet-top">
+        <div class="mainSet-title">
+            <img src="../../images/timg.png">
+            <h3>数据库列表</h3>
+        </div>
+        <div id="toolBar">
+            <div id="toolThree" ng-cloak>
+                <a id="mostSmall">
+                    <img src="../../../common/image/s1.png">
+                </a>
+                <a id="close" title="关闭">
+                    <img src="../../../common/image/e1.png">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mainSet-center">
+        <div class="mainSet-tab">
+            <ul>
+                <li class="mainSet-tab-Active">资源</li>
+                <li>播出单</li>
+                <li>其他应用</li>
+                <li>历史记录</li>
+            </ul>
+        </div>
+        <div class="mainSet-list">
+            <div class="mainSet-list-one">
+                <div class="nowLoadList-text">
+                    <div class="nowLoadList-text-right">
+                        <button class="nowLoadList-text-btnStop">全部暂停</button>
+                        <button class="nowLoadList-text-btnStart">全部开始</button>
+                        <button class="nowLoadList-text-btn2">全部取消</button>
+                    </div>
+                </div>
+                <ul class="nowLoadList-ul">
+                    <li class="modelNowLoad">
+                        <div class="nowLoadList-left">
+                            <div class="nowLoadList-img">
+                                <img src="../../images/biao_03.png">
+                            </div>
+                            <div class="nowLoadList-name">
+                                <h3></h3>
+                                <p><span></span><span></span></p>
+                            </div>
+                        </div>
+                        <div class="nowLoadList-right">
+                            <div class="nowLoadList-progress">
+                                <div class="loadProgress">
+                                    <div class="loadProgress-striped"></div>
+                                </div>
+                                <span></span>
+                                <a></a>
+                            </div>
+                            <div class="nowLoadList-tool">
+                                <button id="loadControl1" ></button>
+                                <button class="loadCancel" title="取消下载"></button>
+                                <button class="loadFile" title="打开所在文件夹"></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mainSet-list-tow">
+                <div class="nowLoadList-text">
+                    <div class="nowLoadList-text-right">
+                        <button class="nowLoadList-text-btnStop">全部暂停</button>
+                        <button class="nowLoadList-text-btnStart">全部开始</button>
+                        <button class="nowLoadList-text-btn2">全部取消</button>
+                    </div>
+                </div>
+                <ul class="nowLoadList-ul">
+                    <li class="modelNowLoad">
+                        <div class="nowLoadList-left">
+                            <div class="nowLoadList-img">
+                                <img src="../../images/biao_03.png">
+                            </div>
+                            <div class="nowLoadList-name">
+                                <h3></h3>
+                                <p><span></span><span></span></p>
+                            </div>
+                        </div>
+                        <div class="nowLoadList-right">
+                            <div class="nowLoadList-progress">
+                                <div class="loadProgress">
+                                    <div class="loadProgress-striped"></div>
+                                </div>
+                                <span></span>
+                                <a></a>
+                                <i></i>
+                            </div>
+                            <div class="nowLoadList-tool">
+                                <button id="loadControl2" class="loadStart"></button>
+                                <button class="loadCancel" title="取消下载"></button>
+                                <button class="loadFile" title="打开所在文件夹"></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mainSet-list-second">
+                <div class="nowLoadList-text">
+                    <div class="nowLoadList-text-right">
+                        <button class="nowLoadList-text-btnStop">全部暂停</button>
+                        <button class="nowLoadList-text-btnStart">全部开始</button>
+                        <button class="nowLoadList-text-btn2">全部取消</button>
+                    </div>
+                </div>
+                <ul class="nowLoadList-ul">
+                    <li class="modelNowLoad">
+                        <div class="nowLoadList-left">
+                            <div class="nowLoadList-img">
+                                <img src="../../images/biao_03.png">
+                            </div>
+                            <div class="nowLoadList-name">
+                                <h3></h3>
+                                <p><span></span><span></span></p>
+                            </div>
+                        </div>
+                        <div class="nowLoadList-right">
+                            <div class="nowLoadList-progress">
+                                <div class="loadProgress">
+                                    <div class="loadProgress-striped"></div>
+                                </div>
+                                <span></span>
+                                <a></a>
+                                <i></i>
+                            </div>
+                            <div class="nowLoadList-tool">
+                                <button id="loadControl4" class="loadStart"></button>
+                                <button class="loadCancel" title="取消下载"></button>
+                                <button class="loadFile" title="打开所在文件夹"></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mainSet-list-three">
+                <div class="comLoadList-text">
+                    <div class="comLoadList-text-left">
+                        共传输完成
+                        <span></span>
+                        个文件!
+                    </div>
+                    <div class="comLoadList-text-right">
+                        <button class="comLoadList-text-right-btn1">打开下载目录</button>
+                        <button class="comLoadList-text-right-btn2">清除所有记录</button>
+                    </div>
+                </div>
+                <ul class="nowLoadList-ul">
+                    <li class="modelNowLoad">
+                        <div class="nowLoadList-left">
+                            <div class="nowLoadList-img">
+                                <img src="../../images/biao_03.png">
+                            </div>
+                            <div class="nowLoadList-name">
+                                <h3></h3>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="comLoadList-right">
+                            <span class="comLoadList-time"></span>
+                            <span class="comLoadList-complete">下载完成</span>
+                            <div class="comLoadList-right-loadBtn">
+                                <button class="loadRepeat" title="重新下载"></button>
+                                <button class="loadFile" title="打开所在文件夹"></button>
+                                <button class="loadCancel" title="清除记录"></button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../../common/js/libs/require.js"></script>
+<script type="text/javascript" src="../../../common/js/require-config.js"></script>
+<script>
+    pathConfig("../../../common/js/");
+    require(['uclient',"jquery","dotEvent","../../script/libs/Mkb"],function(uclient,$,dotEvent,Mkb){
+        $(function () {
+            uclient.restoreLogin(false,true);
+
+            //拖动
+            $(".mainSet-top").on("mousedown",function () {
+                return uwnd.drag();
+            });
+            //阻止事件冒泡
+            $("#toolBar").on("mousedown",function (e) {
+                e.stopPropagation();
+            });
+            //禁止选中
+            document.onselectstart=new Function("event.returnValue=false;");
+
+            $(".mainSet-sure").on("click",function () {
+                uwnd.close();
+            });
+            $("#close,.mainSet-cancel").on("click",function () {
+                uwnd.close();
+            });
+
+            $(".mainSet-tab ul li").off("click").on("click",function () {
+                var index=$(this).index();
+                $(this).addClass("mainSet-tab-Active").siblings().removeClass("mainSet-tab-Active");
+                if(index==0){
+                    $(".mainSet-list-one").css("display","flex").siblings().css("display","none");
+                    uclient.upload.getMosObjTask(function (seqNo,code,err,taskInfo) {
+                        if(code>=0){
+                            console.log(taskInfo);
+                            $(".mainSet-list-one ul li").not(".modelNowLoad").remove();
+                            $.each(taskInfo.task_list,function (index,value) {
+                                $(".mainSet-list-one ul li.modelNowLoad").clone().removeClass("modelNowLoad")
+                                        .find(".nowLoadList-name h3").text(value.meta_file.slice(value.meta_file.lastIndexOf("\\")+1))
+                                        .end().find(".loadProgress-striped").css("width",value.progress+"%")
+                                        .end().find(".nowLoadList-progress >a").text(function () {
+                                    if(value.state==="pause"){
+                                        return ""
+                                    }else if(value.state==="error"){
+                                        return ""
+                                    }else{
+                                        return value.progress+"%";
+                                    }
+                                })
+                                        .end().find(".nowLoadList-progress >span").text(function () {
+                                    if(value.state==="pause"){
+                                        return "已暂停"
+                                    }else if(value.state==="error"){
+                                        return "失败"
+                                    }else{
+                                        return value.state;
+                                    }
+                                }).css("color",function () {
+                                    if(value.state==="error"){
+                                        return "red"
+                                    }else{
+                                        return "#000";
+                                    }
+                                }).end().find(".nowLoadList-tool #loadControl1").attr("class",function () {
+                                    if(value.state==="pause"){
+                                        return "loadStart"
+                                    }else if(value.state==="error"){
+                                        return "loadStart"
+                                    }else{
+                                        return "loadStop"
+                                    }
+                                }).end().attr("data-taskId",value.taskID).appendTo(".mainSet-list-one ul")
+                            });
+                            buttonClick()
+                        }else{
+                            console.log(err)
+                        }
+                    })
+
+                }
+                if(index==1){
+                    $(".mainSet-list-tow").css("display","flex").siblings().css("display","none");
+                    uclient.upload.getROTask(function (seqNo,code,err,taskInfo) {
+                        if(code>=0){
+                            console.log(taskInfo);
+                            $(".mainSet-list-tow ul li").not(".modelNowLoad").remove();
+                            $.each(taskInfo.task_list,function (index,value) {
+                                $(".mainSet-list-tow ul li.modelNowLoad").clone().removeClass("modelNowLoad")
+                                        .find(".nowLoadList-name h3").text(value.file)
+                                        .end().find(".loadProgress-striped").css("width",value.progress+"%")
+                                        .end().find(".nowLoadList-progress >a").text(function () {
+                                    if(value.state==="pause"){
+                                        return ""
+                                    }else if(value.state==="error"){
+                                        return ""
+                                    }else{
+                                        return value.progress+"%";
+                                    }
+                                })
+                                        .end().find(".nowLoadList-progress >span").text(function () {
+                                    if(value.state==="pause"){
+                                        return "已暂停"
+                                    }else if(value.state==="error"){
+                                        return "失败"
+                                    }else{
+                                        return value.state;
+                                    }
+                                }).css("color",function () {
+                                    if(value.state==="error"){
+                                        return "red"
+                                    }else{
+                                        return "#000";
+                                    }
+                                }).end().find(".nowLoadList-progress >i").text(value.step+"/"+value.total)
+                                        .end().find(".nowLoadList-tool #loadControl2").attr("class",function () {
+                                    if(value.state==="pause"){
+                                        return "loadStop"
+                                    }else if(value.state==="error"){
+                                        return "loadStop"
+                                    }else{
+                                        return "loadStart"
+                                    }
+                                }).end().attr("data-taskId",value.taskID).appendTo(".mainSet-list-tow ul")
+                            });
+                            buttonClick()
+                        }else{
+                            console.log(err)
+                        }
+                    })
+                }
+                if(index==1){
+                    $(".mainSet-list-second").css("display","flex").siblings().css("display","none");
+
+                }
+                if(index==3){
+                    $(".mainSet-list-three").css("display","flex").siblings().css("display","none");
+                    uclient.upload.getHistory(function (seqNo,code,err,taskInfo) {
+                        if(code>=0){
+                            console.log(taskInfo);
+                            $(".mainSet-list-three .nowLoadList-ul li").not(".modelNowLoad").remove();
+                            $.each(taskInfo.task_list,function (i,value) {
+                                var date=new Date();//时间
+                                date.setTime(value.create*1000);
+                                var timeDate=date.toLocaleDateString();
+                                var timeHour=date.toTimeString().split(" ")[0];
+                                var status=$(".mainSet-list-three .nowLoadList-ul li").eq(0).removeAttr("class").clone().attr("data-id",value.taskID)
+                                        .find(".nowLoadList-name h3").text(value.meta_file.slice(value.meta_file.lastIndexOf("\\")+1) )
+                                        .end().find(".nowLoadList-name span").text(Mkb.convert(value.tansfer))
+                                        .end().find(".comLoadList-time").text(timeDate+" "+timeHour)
+                                        .end().find(".loadRepeat").attr("data-id",value.taskID)
+                                        .end().find(".loadFile").text(value.meta_file.slice(0,value.meta_file.lastIndexOf("\\")))
+                                        .end().find(".loadCancel").attr("data-id",value.taskID);
+                                status.end().find(".comLoadList-complete").text("下载完成").css({
+                                    "background-image":"url(../../images/complete.png)",
+                                    "background-position":"3px 3px",
+                                    "background-size":"11px"
+                                }).end().addClass(function () {
+                                    if(value.state==="done"){
+                                        return "historyDone"
+                                    }else{
+                                        return "historyCancel"
+                                    }
+                                }).appendTo(".mainSet-list-three .nowLoadList-ul");
+
+                                $(".mainSet-list-three .nowLoadList-ul li").eq(0).attr("class","modelNowLoad");
+
+                            });
+                        }else{
+                            console.log(err)
+                        }
+                    });
+
+                }
+            });
+            $(".mainSet-tab ul li").eq(0).triggerHandler("click");
+            function buttonClick() {
+                $(".nowLoadList-tool .loadStart").off("click").on("click",function () {
+                    var taskid=$(this).parents("li").attr("data-taskId");
+                    uclient.upload.resumeTask(taskid,function (seqNo,code,err,taskInfo) {
+                        if(code>=0){
+                            console.log(taskInfo)
+                        }else{
+                            console.log(err)
+                        }
+                    })
+                });
+                $(".nowLoadList-tool .loadStop").off("click").on("click",function () {
+                    var taskid=$(this).parents("li").attr("data-taskId");
+                    uclient.upload.pauseTask(taskid,function (seqNo,code,err,taskInfo) {
+                        if(code>=0){
+                            console.log(taskInfo)
+                        }else{
+                            console.log(err)
+                        }
+                    })
+                });
+                $(".nowLoadList-tool .loadCancel").off("click").on("click",function () {
+                    var taskid=$(this).parents("li").attr("data-taskId");
+                    uclient.upload.cancelTask(taskid,function (seqNo,code,err,taskInfo) {
+                        if(code>=0){
+                            console.log(taskInfo)
+                        }else{
+                            console.log(err)
+                        }
+                    })
+                })
+            }
+            //事件
+
+            //服务器通知状态改变刷新
+            dotEvent.add_handler("state_change","/cds/tms/upload",function (cmd,uri,params,replybody) {
+                console.log(replybody);
+                $(".nowLoadList-ul li ").not(".modelNowLoad").each(function () {
+                    var taskId=$(this).attr("data-taskid");
+                    if(taskId===replybody.taskID){
+                        $(this).find(".loadProgress-striped").attr("width",replybody.progress+"%")
+                            .end().find(".nowLoadList-progress>span").text(function () {
+                            if(replybody.state==="pause"){
+                                return "已暂停"
+                            }else if(replybody.state==="error"){
+                                return "失败"
+                            }else{
+                                return replybody.state;
+                            }
+                        }).css(function () {
+                            if(replybody.state==="error"){
+                                return "red"
+                            }else{
+                                return "#000";
+                            }
+                        })
+                                .end().find(".nowLoadList-progress>a").text(function () {
+                            if(replybody.state==="error"){
+                                return ""
+                            }else if(replybody.state==="pause"){
+                                return ""
+                            }else{
+                                return replybody.progress+"%"
+                            }
+                        }).end().find(".nowLoadList-progress>i").text(replybody.step+"/"+replybody.total)
+                                .end().find(".nowLoadList-tool >button").eq(0).attr("class",function () {
+                            if(replybody.state==="pause"){
+                                return "loadStop"
+                            }else if(replybody.state==="error"){
+                                return "loadStop"
+                            }else{
+                                return "loadStart"
+                            }
+                        })
+                    }
+                })
+            });
+
+
+
+
+            //监听程序是否掉线
+            //连接通知
+            dotEvent.add_handler("online","/",function (cmd,uri,params,replybody) {
+//                console.log(cmd+replybody);
+                $(".offlineBack").remove();
+                $(".mainSet-top #toolBar #close").removeClass("offClose");
+            });
+            //断开连接
+            dotEvent.add_handler("offline","/",function (cmd,uri,params,replybody) {
+//                console.log(cmd+replybody);
+                $(".offlineBack").remove();
+                $("<div class='offlineBack'><div class='offlineBack-btn'><a title='返回主页点击重试'>连接已断开...</a></div></div>")
+                        .appendTo(".mainSet");
+                $(".mainSet-top #toolBar #close").addClass("offClose");
+                //拖动
+                $(".offlineBack").on("mousedown",function () {
+                    return uwnd.drag();
+                });
+                //阻止事件冒泡
+                $(".offlineBack-btn").on("mousedown",function (e) {
+                    e.stopPropagation();
+                });
+            });
+
+            $(document).on("keyup",function (e) {
+                if(e.ctrlKey==1&&e.keyCode==68){
+                    uwnd.showDevTool()
+                }
+            })
+
+        });
+    });
+
+</script>
+</body>
+</html>

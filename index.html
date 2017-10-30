@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function initStart(cancel) {
+        var back;
+        if(cancel==="cancel"){//判断从主页面返回并传参
+            back="?cancel"
+        }else{
+           back="";
+        }
+        uwnd.showDialog("U-Cloud/templates/login/login.html"+back, {width:660,height:440,min_width:0,min_height:0} ,function () {},function(info1){          
+            if(info1==="close"){
+                uwnd.close();
+            }
+            if(info1==="success"){
+                uwnd.showDialog("U-Cloud/templates/main/main.html", {width:1000,height:750,min_width:1000,min_height:750} ,function () {},function(info2){                    
+                  
+                    if(info2==="close"|| info2 == "{}" ){
+                       
+                        uwnd.close();
+                    }
+                    if(info2==="Cancellation"){
+                        initStart("cancel");
+                    }
+                });
+            }
+        });
+    }
+    initStart();//初始
+</script>
+</html>

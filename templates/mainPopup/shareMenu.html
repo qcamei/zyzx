@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+    <style>
+        html,body{
+            font: 12px Microsoft YaHei, PMingLiU, Verdana, Arial, Helvetica, sans-serif;
+            width:100%;
+            height:100%;
+            /*width: 660px;*/
+            /*height:800px;*/
+            color:#3c3c3c;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            outline: none;
+        }
+
+        .main{
+            width: 100%;
+            height: 100%;
+            cursor: default;
+            border-radius: 3px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .header{
+            height: 55px;
+            position: relative;
+            border:1px solid #28b992;
+            background: #56d7b9;
+        }
+        #toolBar{
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .header .mainTopTitle{
+            padding-top: 15px;
+            text-align: center;
+            width: 100%;
+            color: #fff;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+        .header .mainTopTitle h3 {
+            text-align: left;
+            padding-left: 25px;
+        }
+        .section{
+            flex: 1;
+            box-sizing: border-box;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            border-width:0 1px 1px;
+            border-style:solid;
+            border-color: #999;
+        }
+        .section-list{
+            flex: 1;
+            padding: 10px 0 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .section-list h3{
+            font-size: 14px;
+            padding: 10px 0;
+            font-weight: 500;
+            color: #28b992;
+        }
+        .section-list .section-list-center{
+            flex: 1;
+            border: 1px solid #28b992;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            padding-right: 10px;
+            box-sizing: border-box;
+            background: #f1f1f1;
+        }
+        .section-list-center .section-list-header{
+            height: 40px;
+            background: #f1f1f1;
+        }
+        .section-list-center .section-list-header h4{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #28b992;
+            font-weight: 500;
+            float: left;
+            background: #f1f1f1;
+            font-size: 14px;
+        }
+        .section-list-center .section-list-title{
+            flex: 1;
+            overflow-y: auto;
+            margin-right: -10px;
+            background: #fff;
+        }
+        .section-list-center .section-list-title::-webkit-scrollbar {
+            width:5px;
+        }
+        .section-list-center .section-list-title::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 2px;
+        }
+        .section-list-center .section-list-title::-webkit-scrollbar-thumb {
+            background-color: #8ce6da;
+            border-radius: 2px;
+        }
+        .section-list-center .section-list-title::-webkit-scrollbar-thumb:hover{
+            background-color:#28b992;
+        }
+        .section-list .section-list-center ul{
+            list-style: none;
+            width: 100%;
+            float: left;
+        }
+        .section-list .section-list-center ul li{
+            height: 40px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: #3c3c3c;
+            line-height: 40px;
+            border-bottom: 1px solid rgba(140,230,218,0.5);
+        }
+        .section-list-center ul li.topHover{
+            background: rgba(140,230,218,0.2);
+        }
+        .section-list-center ul li.topSelect{
+            background: rgba(140,230,218,0.5);
+        }
+        .section-list-border{
+            border-right: 1px solid #28b992;
+            box-sizing: border-box;
+        }
+        .section-tow .section-list-title ul{
+            width: 50%;
+        }
+        .section-tow .section-list-header h4{
+            width: 50%;
+        }
+        .section-btn,.section-bottom{
+            height: 40px;
+        }
+        .section-btn a,.section-bottom a{
+            float: right;
+            margin-right: 15px;
+            padding:5px 30px;
+            border: 1px solid rgba(140, 230, 218, 0.8);
+            line-height: 14px;
+            margin-top: 8px;
+            color: #3c3c3c;
+            border-radius: 3px;
+            background: #fff;
+        }
+        .section-btn a:hover,.section-bottom a:hover{
+            background: #25bc91;
+            color: #fff;
+        }
+        .section-delete-btn-false{
+            background: #fff !important;
+            color: #3c3c3c !important;
+            opacity: 0.5 !important;
+        }
+        .section-three .section-list-center{
+            background: #fff;
+            box-sizing: border-box;
+            padding-top: 10px;
+            position: relative;
+        }
+
+        .section-list-set{
+            padding: 15px 0 0 150px;
+        }
+        .section-list-set input{
+            width: 18px;
+            height: 18px;
+        }
+        .section-list-set span{
+            font-size: 14px;
+            color: #28b992;
+            padding-left: 5px;
+            vertical-align: top;
+        }
+        .section-list-center-back{
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background: rgba(255,255,255,0.4);
+        }
+
+
+        .section-one p{
+            font-size: 14px;
+            color: #25bc91;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 5px 0;
+        }
+        .section-one p span{
+            display: inline-block;
+            color: #3c3c3c;
+        }
+        .sectionBack{
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0,0,0,0.05);
+            display: none;
+        }
+        .sectionBack-center{
+            width: 340px;
+            height: 400px;
+            margin: 12% auto;
+        }
+        .sectionBack-body{
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #999;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.6);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .section-add-title{
+           border-radius: 4px 4px 0 0;
+            height: 40px;
+            background: #25bc91;
+        }
+        .section-add-title a{
+            width: 30px;
+            float: right;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-top-right-radius: 4px;
+            background: transparent;
+        }
+        .section-add-title a:hover{
+            background: red;
+        }
+        .section-add{
+            padding: 10px;
+            box-sizing: border-box;
+            flex: 1;
+        }
+        /*.section-add .section-list-center ul li:hover{*/
+            /*background: rgba(140,230,218,0.2);*/
+        /*}*/
+        /*.section-add .section-list-center ul li.addHover{*/
+            /*background: rgba(140,230,218,0.4) !important;*/
+        /*}*/
+        .section-add-bottom{
+            height: 40px;
+            background: rgba(140,230,218,0.1);
+        }
+        .section-add-bottom a{
+            float: right;
+            margin-right: 15px;
+            padding:5px 30px;
+            border: 1px solid rgba(140, 230, 218, 0.8);
+            line-height: 14px;
+            margin-top: 8px;
+            color: #3c3c3c;
+            border-radius: 3px;
+            background: #fff;
+        }
+        .section-add-bottom a:hover{
+            background: #25bc91;
+            color: #fff;
+        }
+
+
+
+
+
+        .offlineBack{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .offlineBack .offlineBack-btn{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .offlineBack .offlineBack-btn a{
+            display: inline-block;
+            font-size: 14px;
+            padding: 5px 30px;
+            background: #fff;
+            color: #25bc91;
+        }
+        .offlineBack .offlineBack-btn a:hover{
+            background: #25bc91;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <div id="toolBar">
+            <div id="toolThree" ng-cloak>
+                <a id="close" title="">
+                    <img src="../../../common/image/e1.png">
+                </a>
+            </div>
+        </div>
+        <div class="mainTopTitle">
+            <h3>共享文件--<span></span></h3>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-one">
+            <p>文件路径：<span></span></p>
+            <p>拥有者：<span></span></p>
+        </div>
+        <div class="section-list section-tow">
+            <div class="section-list-center">
+                <div class="section-list-header">
+                    <h4 >用户</h4>
+                    <h4 >权限</h4>
+                </div>
+                <div class="section-list-title">
+                    <ul class="section-list-border section-list-sheet-state">
+
+                    </ul>
+                    <ul class="section-list-sheet-name">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section-btn">
+            <a class="section-delete-btn section-delete-btn-false">删除</a>
+            <a class="section-add-btn">添加</a>
+        </div>
+        <div class="section-list section-three">
+            <h3>权限设置</h3>
+            <div class="section-list-center">
+                <div class="section-list-set">
+                    <input type="radio" name="radioInput" data-type="1">
+                    <span>只读</span>
+                </div>
+                <div class="section-list-set">
+                    <input type="radio" name="radioInput" data-type="3">
+                    <span>读写</span>
+                </div>
+                <div class="section-list-set">
+                    <input type="radio" name="radioInput" data-type="0">
+                    <span>禁止访问</span>
+                </div>
+                <div class="section-list-center-back"></div>
+            </div>
+        </div>
+        <div class="section-bottom">
+            <a class="section-false">取消</a>
+            <a class="section-true">确定</a>
+        </div>
+    </div>
+    <div class="sectionBack">
+        <div class="sectionBack-center">
+            <div class="sectionBack-body">
+                <div class="section-add-title">
+                    <span></span>
+                    <a><img src="../../../common/image/e1.png"></a>
+                </div>
+                <div class="section-list section-add">
+                    <div class="section-list-center">
+                        <div class="section-list-header">
+                            <h4>用户名</h4>
+                        </div>
+                        <div class="section-list-title">
+                            <ul>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-add-bottom">
+                    <a class="section-add-false">取消</a>
+                    <a class="section-add-true section-delete-btn-false">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../../common/js/libs/require.js" ></script>
+<script type="text/javascript" src="../../../common/js/require-config.js"></script>
+<script>
+    if(typeof(uwnd)!="undefined"){
+        uwnd.foreground();
+    }
+    pathConfig("../../../common/js/");
+    require.config({
+        paths: {
+            "backWait":"../../script/libs/backWait",
+            "dialog":"../../script/libs/dialog"
+        },
+
+    });
+    require(["jquery",'uclient',"dotEvent","dialog","backWait"],function($,uclient,dotEvent,dialog,backWait){
+        $(function () {
+            //关闭
+            $("#close,.section-false").on("click",function () {
+                uwnd.close("close");
+            }).on("mousedown",function (e) {
+                e.stopPropagation();
+            });
+            //拖动
+            $(".header").on("mousedown",function () {
+                return uwnd.drag();
+            });
+            //禁止选中
+            document.onselectstart=new Function("event.returnValue=false;");
+            document.oncontextmenu = function(e){
+                e.preventDefault();
+            };
+            uclient.restoreLogin(false,true);
+
+            //获取
+            var nowName=location.search.split("?")[1].split("&")[0];
+            var nowFold=location.search.split("?")[1].split("&")[1];
+            var nowPath=location.search.split("?")[1].split("&")[2];
+            $(".mainTopTitle h3 span").text(nowName);
+            $(".section-one p").eq(0).find("span").text(nowPath+"\\"+nowName);
+            var userList=[],addList1=[],addList2=[];
+            //获取所有用户列表
+            uclient.getAllUser(function (seqNo2,iCode2,error2,replyBody2) {
+                if(iCode2>=0){
+                    console.log(replyBody2);
+                    userList=replyBody2.user_list;
+                    //初始化
+                    uclient.auth.getAuthInfo(nowFold,function (seqNo1,iCode1,error1,replyBody1) {
+                        if(iCode1>=0){
+                            console.log(replyBody1);
+                            $.each(userList,function (i,value) {
+                                if(value.user_id==replyBody1.vf_owner){
+                                    $(".section-one p").eq(1).find("span").text(value.user_name);
+                                    userList.splice(i,1);
+                                    return false;
+                                }
+                            });
+                            if(replyBody1.vf_auth){
+                                $(replyBody1.vf_auth,function (i,value) {
+                                    if(i%2==0){
+                                        $.each(userList,function (j,val) {
+                                            if(val.user_id==value){
+                                                $("<li></li>").text(val.user_name).appendTo(".section-list-sheet-state");
+                                            }
+                                        });
+                                        addList1.push(value)
+                                    }else{
+                                        $("<li></li>").text(function () {
+                                            if(value==0){
+                                                return "禁止访问"
+                                            }
+                                            if(value==1){
+                                                return "只读"
+                                            }
+                                            if(value==3){
+                                                return "读写"
+                                            }
+                                        }).attr("data-type",value).appendTo(".section-list-sheet-name");
+                                        addList2.push(value)
+                                    }
+                                });
+                                keyClick("first");
+
+                            };
+                            //添加面板
+                            $(".section-add-btn").off("click").on("click",function () {
+                                $(".sectionBack").css("display","block");
+                                $(".section-add ul li").remove();
+                                console.log(addList1);
+                                $.each(userList,function (j,val) {
+                                    var have=false;
+                                    $.each(addList1,function (i,value) {
+                                        if(val.user_id==value){
+                                            have=true;
+                                        }
+                                    });
+                                    if(have==false){
+                                        $("<li></li>").text(val.user_name).attr("data-id",val.user_id)
+                                                .appendTo(".section-add ul");
+                                    }
+                                });
+                                keyClick("tow");
+                            });
+                            $(".section-add-title a,.section-add-false").on("click",function () {
+                                $(".sectionBack").css("display","none");
+                            });
+                            //增
+                            $(".section-add-true").off("click").on("click",function () {
+                                if(!$(this).hasClass("section-delete-btn-false")){
+                                    $(".section-add ul li").each(function () {
+                                        if($(this).hasClass("topSelect")){
+                                            addList1.push($(this).attr("data-id"));
+                                            addList2.push("1");
+                                            var newAdd=Number($(this).attr("data-id"));
+                                            refreshList(newAdd)
+                                        }
+                                    });
+                                    $(".sectionBack").css("display","none");
+                                }
+                            });
+                            function refreshList(newAdd) {
+//                                $(".section-tow ul li").remove();
+                                $.each(userList,function (j,val) {
+                                    if(val.user_id==newAdd){
+                                        $("<li></li>").text(val.user_name).attr("data-id",newAdd)
+                                                .appendTo(".section-list-sheet-state");
+                                    }
+                                });
+                                $("<li></li>").text("只读").attr("data-type","1").appendTo(".section-list-sheet-name");
+                                keyClick("three")
+                            }
+                            //删
+                            $(".section-delete-btn").off("click").on("click",function () {
+                                if(!$(this).hasClass("section-delete-btn-false")){
+                                    $(".section-tow ul").eq(0).find("li").each(function () {
+                                        if($(this).hasClass("topSelect")){
+                                            var nowSelect=Number($(this).index());
+                                            addList1.splice(nowSelect,1);
+                                            addList2.splice(nowSelect,1);
+                                            deleteList(nowSelect);
+                                            return false;
+                                        }
+                                    });
+                                    $(".sectionBack").css("display","none");
+                                }
+                            });
+                            function deleteList(nowSelect) {
+                                $(".section-tow ul").each(function () {
+                                    $(this).find("li").eq(nowSelect).remove()
+                                });
+                                keyClick(nowSelect)
+                            }
+                            //改
+                            function keyClick(type) {
+
+                                $(".section-list-title ul li").off("mouseenter").on("mouseenter",function () {
+                                    var li=$(this).index();
+                                    $(this).parents(".section-list-title").find("ul").each(function (i,value) {
+                                        $(this).find("li").eq(li).addClass("topHover").siblings().removeClass("topHover");
+                                    })
+                                });
+                                $(".section-list-title ul").off("mouseleave").on("mouseleave",function () {
+                                    $(this).parents(".section-list-title").find("ul").each(function (i,value) {
+                                        $(this).find("li").removeClass("topHover");
+                                    })
+                                });
+                                if(type==="tow"){
+                                    $(".section-add-true").addClass("section-delete-btn-false");
+                                }
+                                $(".section-list-title ul li").off("click").on("click",function () {
+                                    var li=$(this).index();
+                                    $(this).parents(".section-list-title").find("ul").each(function (i,value) {
+                                        $(this).find("li").eq(li).addClass("topSelect").siblings().removeClass("topSelect");
+                                        if(i==1){
+                                            var nowType=$(this).find("li").eq(li).attr("data-type");
+                                            $(".section-three input[type='radio']").each(function () {
+                                                if($(this).attr("data-type")===nowType){
+                                                    $(this).prop("checked",true);
+                                                }
+                                            });
+                                        }
+                                    });
+                                    if($(this).parents(".section-list").hasClass("section-tow")){
+                                        $(".section-delete-btn").removeClass("section-delete-btn-false");
+                                        $(".section-list-center-back").css("display","none");
+                                    }
+                                    if($(this).parents(".section-list").hasClass("section-add")){
+                                        $(".section-add-true").removeClass("section-delete-btn-false");
+                                    };
+
+                                });
+                                if(type==="first"){
+                                    $(".section-tow .section-list-title ul li").eq(0).triggerHandler("click");
+                                }else if(type==="tow"){
+                                    $(".section-add .section-list-title ul li").eq(0).triggerHandler("click");
+                                }else if(type==="three"){
+                                    if($(".section-tow .section-list-title ul").eq(0).find("li").length==1){
+                                        $(".section-tow .section-list-title ul li").eq(0).triggerHandler("click");
+                                    }
+                                }else{
+                                    if(type==0){
+                                        if($(".section-tow .section-list-title ul").eq(0).find("li").length==0){
+                                            $(".section-delete-btn").addClass("section-delete-btn-false");
+                                            $(".section-list-center-back").css("display","block");
+                                            $(".section-three input[type='radio']").each(function () {
+                                                $(this).prop("checked",false);
+                                            });
+                                        }else{
+                                            $(".section-tow .section-list-title ul li").eq(type).triggerHandler("click");
+                                        }
+                                    }else{
+                                        $(".section-tow .section-list-title ul li").eq(type-1).triggerHandler("click");
+                                    }
+                                }
+                            }
+                            //radio
+                            $(".section-three input[type='radio']").on("click",function () {
+                                var radioType=$(this).attr("data-type");
+                                $(".section-tow ul").eq(1).find("li").each(function () {
+                                    if($(this).hasClass("topSelect")){
+                                        $(this).text(function () {
+                                            if(radioType==0){
+                                                return "禁止访问"
+                                            }
+                                            if(radioType==1){
+                                                return "只读"
+                                            }
+                                            if(radioType==3){
+                                                return "读写"
+                                            }
+                                        }).attr("data-type",radioType);
+                                        addList2.splice($(this).index(),0,radioType);
+                                    }
+                                });
+                            })
+                            //提交
+                            $(".section-true").on("click",function () {
+                                var authInfo=[];
+                                $.each(addList1,function (i,value) {
+                                    authInfo.push(value);
+                                    $.each(addList2,function (i2,value2) {
+                                        authInfo.push(addList2[i]);
+                                        return false;
+                                    });
+                                });
+//                                console.log(authInfo)
+                                backWait.backWaitIn({
+                                    "homeEle":".main",
+                                    "imgSrc":"../../images/loadingImg.gif",
+                                    "background":"rgba(0,0,0,0.1)"
+                                });
+                                uclient.auth.setAuthInfo(nowFold,authInfo,function (seqNo3,iCode3,error3,replyBody3) {
+                                    backWait.backWaitOut();
+                                    if (iCode3>=0) {
+                                        console.log(replyBody3);
+                                        uwnd.close("close");
+                                    }else{
+                                        console.log(error3);
+                                        dialog.backDialogIn({
+                                            width:"350px",//宽度
+                                            marginTop:"250px",//
+                                            background:"rgba(0,0,0,0.2)",//背景色
+                                            titleBackground:"#25bc91",//标题栏背景色为空
+                                            sureClose:"../../../common/image/e1.png",//关闭的图片路径
+                                            SureCloseBack:"red",
+                                            h3Text:"共享文件设置失败,"+error3,//文本
+                                            who:".main",//菜单在标签中的位置
+                                            bottomBack:"rgba(140,230,218,0.1)",
+                                            borderBack:"rgba(140,230,218,0.8)",
+                                            aBackground:"#25bc91",
+                                            cancel:"cancelNo"
+                                        });
+                                        $(".backDialog-sure").off("click").one("click",function () {
+                                            dialog.backDialogOut();
+                                        });
+                                    }
+                                });
+                            });
+
+                        }else{
+
+                        }
+                    });
+                }else{
+
+                }
+            });
+
+
+
+
+
+
+            //监听程序是否掉线
+            //连接通知
+            dotEvent.add_handler("online","/",function (cmd,uri,params,replybody) {
+//                console.log(cmd+replybody);
+                $(".offlineBack").remove();
+                $(".personImg-top #toolBar #close").removeClass("offClose");
+            });
+            //断开连接
+            dotEvent.add_handler("offline","/",function (cmd,uri,params,replybody) {
+//                console.log(cmd+replybody);
+                $(".offlineBack").remove();
+                $("<div class='offlineBack'><div class='offlineBack-btn'><a title='返回主页点击重试'>连接已断开...</a></div></div>")
+                        .appendTo(".personImg");
+                $(".personImg-top #toolBar #close").addClass("offClose");
+                //拖动
+                $(".offlineBack").on("mousedown",function () {
+                    return uwnd.drag();
+                });
+                //阻止事件冒泡
+                $(".offlineBack-btn").on("mousedown",function (e) {
+                    e.stopPropagation();
+                });
+            });
+
+            $(document).on("keyup",function (e) {
+                if(e.ctrlKey==1&&e.keyCode==68){
+                    uwnd.showDevTool()
+                }
+            })
+
+        });
+    });
+</script>
+</body>
+</html>

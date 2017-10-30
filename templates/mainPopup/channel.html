@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/resource.css">
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+    <style>
+        html,body,#main,#mainTop{
+            border-radius: 8px 8px 0 0;
+        }
+        .mainDatum .mainChannel{
+            display: none;
+        }
+        #mainTop{
+            height: 85px;
+            position: relative;
+        }
+        #toolBar{
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        #mainTop .mainTopTitle{
+            position: absolute;
+            top: 15px;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            color: #fff;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+        .tabBtnFlex{
+            flex: 1;
+        }
+        #mainTop .tabBtn{
+            list-style: none;
+            padding:0 2px;
+            box-sizing: border-box;
+            float: left;
+            overflow: hidden;
+        }
+        #mainTop .tabBtn:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        #mainTop .tabBtn li{
+            float: left;
+            width: 100px;
+            line-height: 30px;
+            text-align: left;
+            font-size: 14px;
+            margin-right: 5px;
+            color: #fff;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            background: #75ddd6;
+            border: 1px solid #28b992;
+            border-bottom-color: #8ce6da;
+        }
+
+        #mainTop .tabBtn li:hover{
+            background:#25bc91;
+            border-bottom-color: #25bc91;
+        }
+        #mainTop .tabBtn li.backRed em{
+            display: none;
+        }
+        #mainTop .tabBtn li.backBlue{
+            display: inline-block;
+        }
+        .tabSelect{
+            background: #fff !important;
+            color: #8ce6da !important;
+            border-bottom-color: #fff !important;
+        }
+        #mainTop .tabBtn li em{
+            width: 5px;
+            font-style: normal;
+            padding-left: 5px;
+            /*background: url() no-repeat center center;*/
+        }
+        #mainTop .tabBtn li span{
+            display: inline-block;
+            padding-left: 5px;
+        }
+        #mainTop .tabBtn li i{
+            width: 18px;
+            height: 18px;
+            border-radius: 100%;
+            background: #fff;
+            position: absolute;
+            right: 2px;
+            top: 6px;
+            color: #000;
+            text-align: center;
+            line-height: 18px;
+            font-style: normal;
+        }
+        #mainTop .tabBtn li i:hover{
+            background: red;
+            color:#fff;
+        }
+        .offlineBack{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .offlineBack .offlineBack-btn{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .offlineBack .offlineBack-btn a{
+            display: inline-block;
+            font-size: 14px;
+            padding: 5px 30px;
+            background: #fff;
+            color: #25bc91;
+        }
+        .offlineBack .offlineBack-btn a:hover{
+            background: #25bc91;
+            color: #fff;
+        }
+        .tabBtnBox{
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: -1px;
+            height: 32px;
+            display: flex;
+        }
+        .tabBtnBoxAdd{
+            display: inline-block;
+            width: 40px;
+            font-size: 25px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            line-height: 32px;
+            position: relative;
+            outline: none;
+        }
+        .tabBtnBoxAdd:hover{
+            background: #fff;
+            color: #25bc91;
+        }
+        .tabBtnBoxAddHover{
+            background: #fff !important;
+            color: #25bc91 !important;
+        }
+        .tabBtnBoxMenuAll{
+            position: absolute;
+            right: 5px;
+            top: 32px;
+            background: #fff;
+            border: 1px solid #ddd;
+            width: 180px;
+            z-index: 20;
+            padding: 2px 0;
+            max-height: 230px;
+            overflow-y: auto;
+            display: none;
+        }
+        .tabBtnBoxMenuAll::-webkit-scrollbar {
+              width:3px;
+          }
+        .tabBtnBoxMenuAll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 1px;
+        }
+        .tabBtnBoxMenuAll::-webkit-scrollbar-thumb {
+            background-color: #8ce6da;
+            border-radius: 1px;
+        }
+        .tabBtnBoxMenuAll::-webkit-scrollbar-thumb:hover{
+            background-color:#28b992;
+        }
+        .tabBtnBoxMenuAll p{
+            height: 32px;
+            line-height: 32px;
+            text-align: left;
+            padding-left:10px;
+            font-size: 14px;
+            color: #3c3c3c;
+        }
+        .tabBtnBoxMenu1,.tabBtnBoxMenu2{
+            background: #fff;
+            width: 100%;
+        }
+        .tabBtnBoxMenu1 li,.tabBtnBoxMenu2 li{
+            text-align: left;
+            height: 32px;
+            line-height: 32px;
+            background: #fff;
+            color: #25bc91;
+            font-size: 14px;
+            padding-left: 18px;
+        }
+        .tabBtnBoxMenu1 li:hover,.tabBtnBoxMenu2 li:hover{
+            background: #8ce6da;
+            color: #fff;
+        }
+        .tabBtnBoxMenu1 li span,.tabBtnBoxMenu2 li span{
+            display: inline-block;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div id="main" ng-controller="headController">
+    <div id="mainTop">
+        <div id="toolBar">
+            <div id="toolThree" ng-cloak>
+                <a id="mostSmall" title={{tool9}}>
+                    <img src="../../../common/image/s1.png">
+                </a>
+                <a id="mostBig" title={{tool10}}>
+                    <img src="../../../common/image/f1.png">
+                </a>
+                <a id="close" title={{tool11}}>
+                    <img src="../../../common/image/e1.png">
+                </a>
+            </div>
+        </div>
+        <div class="mainTopTitle">
+            <h3>多频道浏览</h3>
+        </div>
+        <div class="tabBtnBox">
+            <div class="tabBtnFlex">
+                <ul class="tabBtn">
+                    <li class="tabSelect">
+                        <em>★</em>
+                        <span> channel</span>
+                        <i>×</i>
+                    </li>
+                </ul>
+            </div>
+            <a class="tabBtnBoxAdd" tabindex="0">
+                <span> +</span>
+                <div class="tabBtnBoxMenuAll">
+                    <p>查看分享</p>
+                    <ul class="tabBtnBoxMenu1">
+                        <!--<li><span>aaaasd</span></li>-->
+                        <!--<li><span>aaadasdasdas</span></li>-->
+                        <!--<li><span>aaaasdasdas</span></li>-->
+                        <!--<li><span>aaaasdasd</span></li>-->
+                    </ul>
+                    <p>我的频道</p>
+                    <ul class="tabBtnBoxMenu2">
+                        <!--<li><span>aaadasdasdafsdfsdfsdfsdfssssdfsfsdfs</span></li>-->
+                        <!--<li><span>aaasdasdaa</span></li>-->
+                        <!--<li><span>aadasda</span></li>-->
+                        <!--<li><span>aaasdasa</span></li>-->
+                    </ul>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id="mainBottom">
+        <div id="mainResource"  ng-controller="resourceController">
+            <div class="channelTab">
+                <div class="mainMiddle" ng-controller="channelController">
+                    <div class="mainLeft">
+                        <div class="mainDatum">
+                            <div class="mainChannel">
+                                <div class="channelContain" tabindex="0">
+                                    <!--<a class="triMenu">-->
+                                    <!--<span></span>-->
+                                    <!--</a>-->
+                                    <input type="button" class="channel" value="">
+                                    <ul class="allChannel">
+                                        <!--<li class="liActive">{{resource1}}</li>-->
+                                        <!--<li>{{resource2}}</li>-->
+                                        <!--<li>{{resource3}}</li>-->
+                                        <!--<li>{{resource4}}</li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="resourceTitle">
+                                <i class="datumActive"></i>
+                                <a>{{resource5}}</a>
+                            </div>
+                            <ul class="resource">
+                                <li class="title resourceClick">
+                                    <i class="datumActive"></i>
+                                    <a>{{resource5}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="rightBorder"></div>
+                    <div class="mainCenter">
+                        <div class="center-head">
+                            <div class="head-one">
+                                <button class="btnBack" title="{{resource21}}"></button>
+                            </div>
+                            <div class="head-tow">
+                                <div class="fileWay">
+                                    <!--<div class="firstFile">-->
+                                    <!--&lt;!&ndash;<div class="firstFileImg"></div>&ndash;&gt;-->
+                                    <!--<span></span>-->
+                                    <!--<i></i>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <div class="head-three">
+                                <input class="fileSearch" type="text" placeholder="{{resource23}}">
+                                <i></i>
+                            </div>
+                            <div class="head-four">
+                                <button class="headMysql" title="导入"></button>
+                                <!--<button class="headsort" title="{{resource24}}"></button>-->
+                                <button class="headView" title="{{resource25}}"></button>
+                            </div>
+                        </div>
+                        <div class="center-body">
+                            <div class="center-body-contain">
+                                <ul class="center-resource">
+                                    <!--<li title="">-->
+                                    <!--<div class="file-head">-->
+                                    <!--<img src="">-->
+                                    <!--<img src="">-->
+                                    <!--</div>-->
+                                    <!--<div class="file-center">-->
+                                    <!--<img src="">-->
+                                    <!--</div>-->
+                                    <!--<div class="file-sub">-->
+                                    <!--<img src="">-->
+                                    <!--</div>-->
+                                    <!--<div class="file-foot">-->
+                                    <!--<span></span>-->
+                                    <!--</div>-->
+                                    <!--</li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainFoot">
+                    <span>{{resource26}}</span>
+                    <img src="../../images/size_03.png">
+                    <a class="uploadListBtn">上传列表</a>
+                    <a class="downloadListBtn">下载列表</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../../common/js/libs/require.js" data-main="../../script/channelMain.js"></script>
+<script type="text/javascript" src="../../../common/js/require-config.js"></script>
+</body>
+</html>

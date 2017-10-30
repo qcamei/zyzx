@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+    <style>
+        html,body{
+            font: 12px Microsoft YaHei, PMingLiU, Verdana, Arial, Helvetica, sans-serif;
+            width:100%;
+            height:100%;
+            /*width:540px;*/
+            /*height:410px;*/
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            outline: none;
+        }
+        .personImg{
+            width: 100%;
+            height:100%;
+            background: #fff;
+            cursor: default;
+            border-radius: 3px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.6);
+            position: relative;
+            border: 1px solid #999;
+            box-sizing: border-box;
+        }
+        .personImg-top{
+            width: 100%;
+            height: 10%;
+            color: #fff;
+            background: rgba(37,188,145,0.8);
+            border-radius: 3px 3px 0 0;
+        }
+        #toolBar #close.offClose{
+            position: relative;
+            right: 0;
+            top: 0;
+            z-index: 1002;
+        }
+        .personImg-title{
+            float: left;
+        }
+        .personImg-title img{
+            width: 20px;
+            height: 20px;
+            padding-left: 10px;
+            vertical-align: top;
+            padding-top: 10px;
+        }
+        .personImg-title h3{
+            padding: 10px;
+            font-weight: 500;
+            display: inline-block;
+        }
+        .personImg-center{
+            width: 100%;
+            height:80%;
+            display: flex;
+            background: #fff;
+            padding-top: 15px;
+            box-sizing: border-box;
+        }
+        .personImg-left{
+            position: relative;
+            flex: 1;
+        }
+        .personImg-left>h3{
+            line-height: 25px;
+            border: 1px solid #f1f1f1;
+            font-size: 12px;
+            color: #aaa;
+            padding-left: 30px;
+            border-right: 0;
+            font-weight: 500;
+        }
+        .personImg-left-btn{
+            padding: 30px 30px;
+        }
+        .personImg-left-btn:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .personImg-file,.personImg-photo{
+            float: left;
+            margin-left: 20px;
+        }
+        .personImg-file-img,.personImg-photo-img{
+            width: 120px;
+            height: 125px;
+            text-align: center;
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .personImg-file-img img,.personImg-photo-img img{
+            padding-top: 20px;
+        }
+        .personImg-file-img:hover,.personImg-photo-img:hover{
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+        }
+        .personImg-file h3,.personImg-photo h3{
+            text-align: center;
+            font-weight: 500;
+            padding-top: 10px;
+        }
+        .personImg-left-text{
+            padding: 10px 75px;
+            color: #aaa;
+            position: relative;
+        }
+        .personImg-left-text img{
+            position: absolute;
+            left: 30px;
+            top: -30px;
+        }
+        #file{
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 120px;
+            height: 127px;
+        }
+        .personImg-right{
+            width: 154px;
+            height: 100%;
+        }
+        .personImg-content{
+            width: 100%;
+        }
+        .personImg-content>h3{
+            line-height: 25px;
+            padding-left: 30px;
+            color: #3c3c3c;
+        }
+        .personImg-right-big{
+            padding-left: 30px;
+            padding-top: 20px;
+        }
+        .personImg-right-big img{
+            width: 100px;
+            height: 100px;
+        }
+        .personImg-right-small{
+            padding-left: 30px;
+            padding-top: 20px;
+        }
+        .personImg-right-small img{
+            width: 45px;
+            height: 45px;
+        }
+
+        .personImg-bottom{
+            width: 100%;
+            height: 10%;
+            box-sizing: border-box;
+            padding-right: 20px;
+        }
+        .personImg-bottom a{
+            float: right;
+            margin-right: 15px;
+            padding: 5px 30px;
+            border: 1px solid rgba(37,188,145,0.8);
+            line-height: 12px;
+            margin-top: 8px;
+            background: #fff;
+            text-decoration: none;
+            color: #3c3c3c;
+            border-radius: 3px;
+        }
+        .personImg-bottom a:hover{
+            background: rgba(37,188,145,0.5);
+            color:#fff;
+        }
+        .offlineBack{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            right: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        .offlineBack .offlineBack-btn{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .offlineBack .offlineBack-btn a{
+            display: inline-block;
+            font-size: 14px;
+            padding: 5px 30px;
+            background: #fff;
+            color: #25bc91;
+        }
+        .offlineBack .offlineBack-btn a:hover{
+            background: #25bc91;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="personImg">
+    <div class="personImg-top">
+        <div class="personImg-title">
+            <img src="../../images/biao.png">
+            <h3>更换头像</h3>
+        </div>
+        <div id="toolBar">
+            <div id="toolThree" ng-cloak>
+                <a id="close" title="关闭">
+                    <img src="../../../common/image/e1.png">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="personImg-center">
+        <div class="personImg-left">
+            <h3>仅支持JPG、GIF、PNG格式图片文件，且每个文件小于3M！</h3>
+            <div class="personImg-left-btn">
+                <div class="personImg-file">
+                    <div class="personImg-file-img">
+                        <img src="../../images/person_03.jpg">
+                        <input type="file" id="file">
+                    </div>
+                    <h3>本地图片</h3>
+                </div>
+                <div class="personImg-photo">
+                    <div class="personImg-photo-img">
+                        <img src="../../images/person_06.jpg">
+                    </div>
+                    <h3>自拍头像</h3>
+                </div>
+            </div>
+            <div class="personImg-left-text">
+                <img src="../../images/person_11.jpg">
+                <span>您可以选择一张本地图片或使用摄像头拍照后制作头像！</span>
+            </div>
+        </div>
+        <div class="personImg-right">
+            <div class="personImg-content">
+                <h3>预览</h3>
+                <div class="personImg-right-big">
+                    <img src="../../images/head.png">
+                    <br>
+                    <span>100×100</span>
+                </div>
+                <div class="personImg-right-small">
+                    <img src="../../images/head.png">
+                    <br>
+                    <span>45×45</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="personImg-bottom">
+        <a  class="personImg-cancel">取消</a>
+        <a  class="personImg-sure">确定</a>
+    </div>
+</div>
+<script type="text/javascript" src="../../../common/js/libs/require.js"></script>
+<script type="text/javascript" src="../../../common/js/require-config.js"></script>
+<script>
+    pathConfig("../../../common/js/");
+    require(['uclient',"jquery","dotEvent"],function(uclient,$,dotEvent){
+        $(function () {
+            uclient.restoreLogin(false,true);
+
+
+            //拖动
+            $(".personImg-top").on("mousedown",function () {
+                return uwnd.drag();
+            });
+            //阻止事件冒泡
+            $("#toolBar").on("mousedown",function (e) {
+                e.stopPropagation();
+            });
+            //禁止选中
+            document.onselectstart=new Function("event.returnValue=false;");
+            //左边
+            $(".personImg-sure").on("click",function () {
+                uwnd.close();
+            });
+            $("#close,.personImg-cancel").on("click",function () {
+                uwnd.close();
+            });
+            //本地
+            $(".personImg-file").on("click",function () {
+
+            });
+
+            //监听程序是否掉线
+            //连接通知
+            dotEvent.add_handler("online","/",function (cmd,uri,params,replybody) {
+//                console.log(cmd+replybody);
+                $(".offlineBack").remove();
+                $(".personImg-top #toolBar #close").removeClass("offClose");
+            });
+            //断开连接
+            dotEvent.add_handler("offline","/",function (cmd,uri,params,replybody) {
+//                console.log(cmd+replybody);
+                $(".offlineBack").remove();
+                $("<div class='offlineBack'><div class='offlineBack-btn'><a title='返回主页点击重试'>连接已断开...</a></div></div>")
+                        .appendTo(".personImg");
+                $(".personImg-top #toolBar #close").addClass("offClose");
+                //拖动
+                $(".offlineBack").on("mousedown",function () {
+                    return uwnd.drag();
+                });
+                //阻止事件冒泡
+                $(".offlineBack-btn").on("mousedown",function (e) {
+                    e.stopPropagation();
+                });
+            });
+
+            $(document).on("keyup",function (e) {
+                if(e.ctrlKey==1&&e.keyCode==68){
+                    uwnd.showDevTool()
+                }
+            })
+
+        });
+    });
+
+</script>
+</body>
+</html>

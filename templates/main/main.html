@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/head.css">
+    <link rel="stylesheet" href="../../css/resource.css">
+    <link rel="stylesheet" href="../../css/powerful.css">
+    <link rel="stylesheet" href="../../css/systemTool.css">
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+</head>
+<body>
+<div id="main" ng-controller="headController">
+    <div id="mainTop">
+        <div id="toolBar">
+            <div id="toolThree" ng-cloak>
+                <a id="setUp" title={{tool12}}>
+                    <img src="../../../common/image/sz.png">
+                </a>
+                <a id="mostSmall" title={{tool9}}>
+                    <img src="../../../common/image/s1.png">
+                </a>
+                <a id="mostBig" title={{tool10}}>
+                    <img src="../../../common/image/f1.png">
+                </a>
+                <a id="close" title={{tool11}}>
+                    <img src="../../../common/image/e1.png">
+                </a>
+            </div>
+        </div>
+        <div class="userMessage" ng-cloak>
+            <h4 class="head-title" >
+                <a ng-bind="tool1"></a>
+                <span></span>
+                <span></span>
+            </h4>
+            <div class="user-head">
+                <div class="head-img">
+                    <img src="../../images/head.png">
+                </div>
+                <div class="head-message">
+                    <h3>
+                        <span ng-bind="tool3"></span>
+                        <a id="userMessage">
+                            <span></span>
+                            <i></i>
+                        </a>
+                    </h3>
+                    <span><span ng-bind="tool4"></span><a class="loginIp"></a></span>
+                </div>
+            </div>
+        </div>
+        <div class="function" ng-cloak>
+            <div class="tool-list tool-list-active">
+                <a class="tool-list-a" >
+                    <div class="tool-list-contain">
+                        <img src="../../images/pin.png">
+                        <p ng-bind="tool5"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="tool-list">
+                <a id="systemManage" class="tool-list-a" >
+                    <div class="tool-list-contain" >
+                        <img src="../../images/tool.png">
+                        <p ng-bind="tool6"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="tool-list">
+                <a class="tool-list-a">
+                    <div class="tool-list-contain" >
+                        <img src="../../images/yun.png">
+                        <p ng-bind="tool7"></p>
+                    </div>
+                </a>
+            </div>
+            <div class="tool-list">
+                <a class="tool-list-a" ui-sref="home">
+                    <div class="tool-list-contain" >
+                        <img src="../../images/power.png">
+                        <p ng-bind="tool8"></p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="mainBottom" >
+        <div id="mainResource"  ng-controller="resourceController">
+            <div class="channelTab">
+                <div class="mainMiddle" ng-controller="homeSelfController">
+                    <div class="mainLeft">
+                        <div class="mainDatum">
+                            <div class="mainChannel">
+                                <div class="channelContain" tabindex="0">
+                                    <a class="triMenu">
+                                        <span></span>
+                                    </a>
+                                    <input type="button" class="channel" value="">
+                                    <ul class="allChannel">
+                                        <!--<li class="liActive">{{resource1}}</li>-->
+                                        <!--<li>{{resource2}}</li>-->
+                                        <!--<li>{{resource3}}</li>-->
+                                        <!--<li>{{resource4}}</li>-->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="resourceTitle">
+                                <i class="datumActive"></i>
+                                <a>{{resource5}}</a>
+                            </div>
+                            <ul class="resource">
+                                <!--<li>-->
+                                <!--<a></a>-->
+                                <!--</li>-->
+                            </ul>
+                            <div class="huaLine">
+                                <span></span>
+                            </div>
+                            <div class="myShare">
+                                <span>{{resource19}}</span>
+                            </div>
+                            <div class="lookShare">
+                                <span>{{resource20}}</span>
+                            </div>
+                            <!--<div class="moreChannel">-->
+                                <!--<span>{{resource27}}</span>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                    <div class="rightBorder"></div>
+                    <div class="mainCenter">
+                        <div class="center-head">
+                            <div class="head-one">
+                                <button class="btnBack" title="{{resource21}}"></button>
+                            </div>
+                            <div class="head-tow">
+                                <div class="fileWay">
+                                    <!--<div class="firstFile">-->
+                                    <!--&lt;!&ndash;<div class="firstFileImg"></div>&ndash;&gt;-->
+                                    <!--<span></span>-->
+                                    <!--<i></i>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <div class="head-three">
+                                <input class="fileSearch" type="text" placeholder="{{resource23}}">
+                                <i></i>
+                            </div>
+                            <div class="head-four">
+                                <button class="headMysql" title="导入"></button>
+                                <!--<button class="headsort" title="{{resource24}}"></button>-->
+                                <button class="headView" title="{{resource25}}"></button>
+                            </div>
+                        </div>
+                        <div class="center-body">
+                            <div class="center-body-contain">
+                                <ul class="center-resource">
+                                    <!--<li title="">-->
+                                    <!--<div class="file-head">-->
+                                    <!--<img src="">-->
+                                    <!--<img src="">-->
+                                    <!--</div>-->
+                                    <!--<div class="file-center">-->
+                                    <!--<img src="">-->
+                                    <!--</div>-->
+                                    <!--<div class="file-sub">-->
+                                    <!--<img src="">-->
+                                    <!--</div>-->
+                                    <!--<div class="file-foot">-->
+                                    <!--<span></span>-->
+                                    <!--</div>-->
+                                    <!--</li>-->
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mainFoot">
+                    <span>{{resource26}}</span>
+                    <img src="../../images/size_03.png">
+                    <a class="uploadListBtn">上传列表</a>
+                    <a class="downloadListBtn">下载列表</a>
+                </div>
+            </div>
+        </div>
+        <div class="tool" ng-controller="systemToolController">
+            <div class="toolContain">
+                <div class="toolBtn">
+                    <ul>
+                        <li class="liUserManage toolBtnActive">
+                            <a ui-sref="userManage">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool1.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>{{system1}}</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+                        </li>
+                        <li class="liBucket">
+                            <a ui-sref="bucket">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool1.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>存储管理</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+                        </li>
+                        <li class="liChannelManage">
+                            <a ui-sref="channelManage">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool2.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>{{system2}}</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+                        </li>
+                        <li class="liJournal">
+                            <a ui-sref="journal">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool3.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>{{system3}}</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+
+                        </li>
+                        <li class="liSever">
+                            <a ui-sref="sever">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool4.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>{{system4}}</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+                        </li>
+                        <li class="liExamine">
+                            <a ui-sref="examine">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool5.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>{{system5}}</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+                        </li>
+                        <li class="liOutPut">
+                            <a ui-sref="outPut">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool6.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>播出单管理</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+                        </li>
+                        <li class="liSite">
+                            <a ui-sref="site">
+                                <div class="toolBtn-img">
+                                    <img src="../../images/tool4.png">
+                                </div>
+                                <div class="toolBtn-text">
+                                    <h3>站点管理</h3>
+                                </div>
+                                <div class="toolBtn-back"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="toolCenter">
+                    <div class="toolCenter-body" ui-view="tool"></div>
+                </div>
+            </div>
+        </div>
+        <div class="power">
+            <div id="ngScope" ui-view="power"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../../common/js/libs/require.js" data-main="../../script/main.js"></script>
+<script type="text/javascript" src="../../../common/js/require-config.js"></script>
+</body>
+</html>

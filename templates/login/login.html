@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+</head>
+<body>
+<div id="login">
+    <div class="loginTop">
+        <div id="toolBar">
+            <div id="toolThree">
+                <a id="setUp"  href="loginSet.html">
+                    <img src="../../../common/image/sz.png">
+                </a>
+                <a id="mostSmall">
+                    <img src="../../../common/image/s1.png">
+                </a>
+                <a id="close" >
+                    <img src="../../../common/image/e1.png">
+                </a>
+            </div>
+        </div>
+        <div class="loginLogo">
+            <div class="loginLogo-img">
+                <img src="../../images/biao.png">
+            </div>
+            <div class="loginLogo-text">
+                <span>U-CLOUD</span>
+            </div>
+        </div>
+    </div>
+    <div class="loginBottom">
+        <div class="loginBottom-left">
+            <div class="loginBackgroud">
+                <img src="../../images/biao.png">
+            </div>
+            <div class="loginBackgroud-text">
+                <h3></h3>
+                <p></p>
+            </div>
+        </div>
+        <div class="loginBottom-right">
+            <div class="loginForm">
+                <div class="loginForm-title">
+                    <span>登录U-cloud账号</span>
+                </div>
+                <div class="loginForm-form">
+                    <form action="" method="post" autocomplete="off">
+                        <div class="formPut">
+                            <div class="labelPut">
+                                <label for="user">
+                                    <span><img src="../../images/userName.jpg"></span>
+                                    <input type="text" id="user" autofocus tabindex="1" placeholder="用户名">
+                                </label>
+                                <div class="labelContain">
+                                    <a class="triMenu" tabindex="-1">
+                                        <span></span>
+                                        <ul class="allUserName">
+
+                                        </ul>
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="checkMessage checkMessageOne"></p>
+                            <div class="labelPut">
+                                <label for="password">
+                                    <span><img src="../../images/password.jpg"></span>
+                                    <input type="password" id="password" tabindex="2" placeholder="密码">
+                                </label>
+                            </div>
+                            <p class="checkMessage checkMessageTow"></p>
+                        </div>
+                        <div class="formcheck">
+                            <div class="formcheck-one">
+                                <input class="monmery" type="checkbox"  tabindex="3">
+                                <span>记住密码</span>
+                            </div>
+                            <div class="formcheck-tow">
+                                <input class="autoLogin" type="checkbox"  tabindex="4">
+                                <span>自动登录</span>
+                            </div>
+                            <div class="formcheck-three">
+                                <a>忘记密码?</a>
+                            </div>
+                        </div>
+                        <div class="formBtn">
+
+                            <input id="loginBtn" type="button" value="登录" tabindex="5">
+                            <p class="checkMessage checkMessageThree"></p>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="loginForm-bottom">
+
+                </div>
+            </div>
+        </div>
+        <div id="loginBack"></div>
+    </div>
+</div>
+    <script type="text/javascript" src="../../../common/js/libs/require.js" data-main="../../script/loginMain.js"></script>
+    <script type="text/javascript" src="../../../common/js/require-config.js"></script>
+</body>
+</html>

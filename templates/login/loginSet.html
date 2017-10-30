@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../common/css/barTool.css">
+    <style>
+        html,body{
+            font: 12px Microsoft YaHei, PMingLiU, Verdana, Arial, Helvetica, sans-serif;
+            width:100%;
+            height:100%;
+            /*width: 530px;*/
+            /*height:430px;*/
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            outline: none;
+        }
+        .loginSet{
+            width: 100%;
+            height:100%;
+            background: #f9f9f9;
+            cursor: default;
+            border-radius: 3px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.6);
+            position: relative;
+            border: 1px solid #999;
+            box-sizing: border-box;
+        }
+        .loginSet-top{
+            width: 100%;
+            height: 88%;
+            background: rgba(140,230,218,0.1);
+        }
+        .loginSet-title{
+            width: 100%;
+            height: 50.4px;
+            background: linear-gradient(rgba(40,185,146,0.8) 15%, rgba(255,255,255,0.25) 85%);
+        }
+        .loginSet-center{
+            width: 100%;
+            height:320px;
+            box-sizing: border-box;
+            padding: 0 30px;
+            position: relative;
+        }
+        .loginSet-center h3{
+            padding: 15px;
+            font-weight: 500;
+        }
+        .loginSet-center >span{
+            padding-left: 30px;
+            vertical-align: top;
+        }
+        .loginSet-center .languageContain{
+            line-height: 25px;
+            height: 25px;
+            width: 140px;
+            font-family: inherit;
+            display: inline-block;
+            position: relative;
+        }
+        #languageSelect{
+            width: 100%;
+            box-sizing: border-box;
+            height: 25px;
+            line-height: 25px;
+            padding-left: 10px;
+            border: 1px solid #d0d0d0;
+            background: transparent;
+            font-family: inherit;
+            font-size: 12px;
+            text-align: left;
+        }
+        .languageContain .triMenu{
+            position: absolute;
+            right: 3px;
+            top:6px;
+            width: 15px;
+            height:15px;
+            line-height: 15px;
+            border: 0;
+            outline: none;
+            background: none;
+        }
+        .languageContain .triMenu>span{
+            display: inline-block;
+            width: 0;
+            height:0;
+            border-left:5px solid transparent;
+            border-right:5px solid transparent;
+            border-top:8px solid #28b992;
+        }
+        .allLanguage{
+            list-style: none;
+            width: 140px;
+            position: absolute;
+            top:19px;
+            right:-3px;
+            overflow: auto;
+            max-height:91px;
+            box-sizing: border-box;
+            background: #fff;
+            border-width:0 1px 1px;
+            border-style: solid;
+            border-color: #d0d0d0;
+            z-index: 2;
+            display: none;
+        }
+        .allLanguage li{
+            width: 100%;
+            padding-left: 10px;
+            line-height: 25px;
+            box-sizing: border-box;
+            transition: all 0.1s;
+        }
+        .allLanguage .liActive{
+            background: #56d7b9 !important;
+            color: #fff;
+        }
+        .allLanguage li:hover{
+            background: rgba(140,230,218,0.2);
+        }
+
+        .loginSet-bottom{
+            width: 100%;
+            height: 12%;
+            background: rgba(140,230,218,0.5);
+        }
+        .loginSet-bottom a{
+            float: right;
+            margin-right: 15px;
+            padding: 5px 30px;
+            border: 1px solid #28b992;
+            line-height: 12px;
+            margin-top: 8px;
+            background: #fff;
+            text-decoration: none;
+            color: #3c3c3c;
+            border-radius: 3px;
+        }
+        .loginSet-bottom a:hover{
+            background: #28b992;
+            color:#fff;
+        }
+        .formradio{
+            padding: 20px 0 2px 60px;
+        }
+        .formradio-one,.formradio-tow,.formradio-three{
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .formradio input{
+            width: 20px;
+            height: 20px;
+        }
+        .formradio span{
+            vertical-align: top;
+            color: #28b992;
+        }
+        .formradio-three{
+            margin-right: 0;
+        }
+        .formradio-contain{
+            display: none;
+        }
+        .config-tow{
+            padding-top: 15px;
+            position: relative;
+            padding-left: 92px;
+        }
+        .config-tow:after,.config-tow-ip:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .config-tow-ip{
+            padding-top: 10px;
+            float: left;
+            padding-left: 10px;
+            width: 100%;
+        }
+        .config-tow-ip-one,.config-tow-ip-tow,.config-tow-ip-three{
+            float: left;
+            width: 100%;
+            margin-top: 5px;
+        }
+        .config-tow-name{
+            float: left;
+            padding-right: 5px;
+            font-size: 15px;
+            width: 80px;
+            text-align: right;
+        }
+
+
+        .moreConfig{
+            float: left;
+            position: relative;
+            margin-left: 6px;
+        }
+        .moreConfig-tri{
+            width: 35px;
+            height: 22px;
+            border:1px solid #ddd;
+            box-sizing: border-box;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .moreConfig-tri >button{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background: url(../../images/5_03.png) no-repeat center center;
+            background-size: cover;
+            outline: none;
+            border: 0;
+        }
+        .moreConfig-tri >a{
+            display: none;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+        .moreConfig-ul{
+            list-style: none;
+            position: absolute;
+            right: 41px;
+            width: 180px;
+            border:1px solid #ddd;
+            border-radius: 0 0 4px 4px;
+            background: #fff;
+            max-height: 74px;
+            overflow: auto;
+            display: none;
+            margin-top: -1px;
+        }
+        .moreConfig-ul::-webkit-scrollbar {
+            width:5px;
+            height:100%;
+            position: absolute;
+            left: -5px;
+        }
+        .moreConfig-ul::-webkit-scrollbar-track {
+            background-color: #fff;
+        }
+        .moreConfig-ul::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+        }
+        .moreConfig-ul li{
+            width: 100%;
+            height: 24px;
+            box-sizing: border-box;
+            padding-left: 15px;
+            cursor: default;
+            line-height: 24px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .moreConfig-ul li:hover{
+            background: #f6fafd;
+        }
+        .messageIp{
+            height: 20px;
+            line-height: 20px;
+            font-size: 13px;
+            color: rgb(214,62,41);
+            padding: 5px 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        #port{
+            width: 180px;
+            height: 22px;
+            outline: none;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            float: left;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+        .portName{
+            width: 180px;
+            height: 22px;
+            float: left;
+            outline: none;
+            border-radius: 4px;
+            border: 0;
+            background: rgba(140,230,218,0.3);
+            padding-left: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div class="loginSet">
+        <div class="loginSet-top">
+            <div class="loginSet-title">
+                <div id="toolBar">
+                    <div id="toolThree">
+                        <a id="mostSmall" >
+                            <img src="../../../common/image/s1.png">
+                        </a>
+                        <a id="close" href="login.html#cancel">
+                            <img src="../../../common/image/e1.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="loginSet-center">
+                <h3 class="language"></h3>
+                <span class="language-type"></span>
+                <div class="languageContain" >
+                    <a class="triMenu" tabindex="-1">
+                        <span></span>
+                        <ul class="allLanguage">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </a>
+                    <input type="button" id="languageSelect">
+                </div>
+                <h3 class="linkSet">连接设置</h3>
+                <span class="linkSet-type">选择类型：</span>
+                <div class="formradio">
+                    <div class="formradio-one">
+                        <input class="local" type="radio" name="selectType" tabindex="6" checked>
+                        <span>本地</span>
+                    </div>
+                    <div class="formradio-tow">
+                        <input class="private" type="radio"  name="selectType" tabindex="7" >
+                        <span>私有云</span>
+                    </div>
+                    <div class="formradio-three">
+                        <input class="public" type="radio"  name="selectType" tabindex="8">
+                        <span>公有云</span>
+                    </div>
+                </div>
+                <div class="formradio-contain">
+                    <div class="config-tow">
+                        <div class="config-tow-ip">
+                            <div class="config-tow-ip-one">
+                                <span class="config-tow-name">云资源IP：</span>
+                                <div id="configDiv"></div>
+                                <div class="moreConfig">
+                                    <div class="moreConfig-tri">
+                                        <button title="自动探测"></button>
+                                        <a><img src="../../images/loading5.gif"></a>
+                                    </div>
+                                    <ul class="moreConfig-ul">
+                                        <li>
+                                        <span>192.168.10.0:8930--agent</span>
+                                        </li>
+                                        <li>
+                                        <span>192.168.10.01:8930--agent</span>
+                                        </li>
+                                        <li>
+                                        <span>192.168.10.03:8930--agent</span>
+                                        </li>
+                                        <li>
+                                        <span>192.168.10.04:8930--agent</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="config-tow-ip-tow">
+                                <span class="config-tow-name">端口号：</span>
+                                <input id="port" type="text">
+                            </div>
+                            <div class="config-tow-ip-three">
+                                <span class="config-tow-name">name：</span>
+                                <span class="portName"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="messageIp"></p>
+            </div>
+        </div>
+        <div class="loginSet-bottom">
+            <a href="login.html#cancel" class="loginSet-cancel"></a>
+            <a  class="loginSet-sure"></a>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../../common/js/libs/require.js"></script>
+    <script type="text/javascript" src="../../../common/js/require-config.js"></script>
+    <script>
+        pathConfig("../../../common/js/");
+        require.config({
+            paths: {
+                "ipConfig":"../../script/libs/ipConfig",
+                "dialog":"../../script/libs/dialog",
+                "backWait":"../../script/libs/backWait"
+            },
+            shim:{
+                "ipConfig":{
+                    deps: ['jquery']
+                }
+            }
+        });
+        require(["jquery","uclient","ipConfig","dialog","backWait"],function ($,uclient,ipConfig,dialog,backWait) {
+            $(function () {
+                //最小化
+                $("#mostSmall").on("click", function () {
+                    uwnd.minmize();
+                });
+                //拖动
+                $(".loginSet-title").on("mousedown", function () {
+                    return uwnd.drag();
+                });
+                $("#mostSmall,#close").on("mousedown", function (e) {
+                    e.stopPropagation();
+                });
+                //字体的动态添加
+                $.ajax({
+                    url:"../../json/"+localStorage.language+"/loginSet.json",
+                    method:"get",
+                    dataType:"json",
+                    success:function(data){
+                        $("#mostSmall").attr("title",data.bar2);
+                        $("#close").attr("title",data.bar3);
+                        $(".loginSet-center .language").text(data.language);
+                        $(".language-type").text(data.type);
+                        $(".allLanguage li").eq(0).text(data.ease);
+                        $(".allLanguage li").eq(1).text(data.complex);
+                        $(".allLanguage li").eq(2).text(data.english);
+                        $(".loginSet-sure").text(data.sure);
+                        $(".loginSet-cancel").text(data.cancel);
+                        if(localStorage.language==="chinese"){
+                            $("#languageSelect").val(data.ease);
+                            $(".allLanguage li").eq(0).addClass("liActive");
+                        }else if(localStorage.language==="English"){
+                            $("#languageSelect").val(data.english);
+                            $(".allLanguage li").eq(2).addClass("liActive");
+                        }else{
+                            $("#languageSelect").val(data.complex);
+                            $(".allLanguage li").eq(1).addClass("liActive");
+                        };
+                        $(".languageContain .triMenu").on("click",function () {
+                            if($(".allLanguage").css("display")==="none"){
+                                $(".allLanguage").css("display","block");
+                            }else{
+                                $(".allLanguage").css("display","none");
+                            }
+                        });
+                        var val;
+                        $(".allLanguage li").on("click",function (e) {
+                            e.stopPropagation();
+                            $("#languageSelect").val($(this).text());
+                            $(this).addClass("liActive").siblings().removeClass("liActive");
+                            val=$(this).index();
+                            $(".allLanguage").css("display","none");
+                        });
+
+                        //失去焦点
+                        $(".triMenu").on("blur",function () {
+                            $(".allLanguage").css("display","none");
+                        });
+                        //禁止选中
+                        document.onselectstart=new Function("event.returnValue=false;");
+
+                        //ip
+                        $("#configDiv").ipConfig();
+
+                        //下拉菜单
+                        $(".moreConfig-tri button").on("click",function (e) {
+                            e.stopPropagation();
+                            $(".moreConfig-ul li").remove();
+                            $(".messageIp").text("");
+                            //界面阻塞
+                            $(".moreConfig-tri >button").css("display","none");
+                            $(".moreConfig-tri >a").css("display","inline-block");
+                            uclient.getServerList(function (seqNo,iCode,msg,replybody) {
+                                $(".moreConfig-tri >button").css("display","inline-block");
+                                $(".moreConfig-tri >a").css("display","none");
+                                if(iCode>=0){
+                                    console.log(replybody);
+                                    $.each(replybody.vol_list,function (i,value) {
+                                        $("<li><span></span></li>").find("span").text(value.srv_addr+"--"+value.vol)
+                                                .end().appendTo(".moreConfig-ul");
+                                        moreConfig();
+                                    });
+                                    $(".moreConfig-ul").css("display","block");
+                                }else{
+                                    $(".moreConfig-ul").css("display","none");
+                                    $(".messageIp").text("自动探测失败");
+                                }
+                            });
+
+                        });
+                        $(".ipInput").on("focus",function () {
+                            $(".moreConfig-ul").css("display","none");
+                        });
+                        function moreConfig() {
+                            $(".moreConfig-ul li").off("click").on("click",function (e) {
+                                e.stopPropagation();
+                                var ip=$(this).find("span").text().split(":")[0].split(".");
+                                $(".ipInput").each(function (index) {
+                                    $(this).val(ip[index]);
+                                });
+                                $("#port").val($(this).find("span").text().split(":")[1].split("--")[0]);
+                                $(".portName").text($(this).find("span").text().split(":")[1].split("--")[1]);
+                                $(".moreConfig-ul").css("display","none");
+                            });
+                        }
+
+                        $("body").on("click",function () {
+                            $(".moreConfig-ul").css("display","none");
+                        });
+                        window.onblur=function () {
+                            $(".moreConfig-ul").css("display","none");
+                        };
+                        //初始化
+                        uclient.init(function(seqNo,iCode,error,info){
+                            if(iCode>=0){
+                                console.log(info);
+                                if(info.serverDomain){
+                                    var ip=info.serverDomain.split(" ")[0].split(":")[0].split(".");
+                                    $(".ipInput").each(function (index) {
+                                        $(this).val(ip[index]);
+                                    });
+                                    $("#port").val(info.serverDomain.split(" ")[0].split(":")[1]);
+                                    $(".portName").text(info.name);
+                                }
+                                if(info.config==="local"){
+                                    $(".formradio input.local").prop("checked",true);
+                                    $(".formradio-contain").css("display","none");
+                                }
+                                if(info.config==="cache"){
+                                    $(".formradio input.private").prop("checked",true);
+                                    $(".formradio-contain").css("display","block");
+                                }
+                                if(info.config==="cloud"){
+                                    $(".formradio input.public").prop("checked",true);
+                                    $(".formradio-contain").css("display","none");
+                                }
+                            }else{
+                                //默认本地
+                                $(".formradio input.local").prop("checked",true);
+                                $(".formradio-contain").css("display","none");
+                            }
+
+                        });
+                        var nowConnect=uclient.getConnectType();
+                        console.log(nowConnect);
+                        //radio
+                        var nowSelect,domain;
+                        $(".formradio input[type=radio]").on("click",function () {
+                            if($(this).hasClass("local")){
+                                $(".formradio-contain").css("display","none");
+                            }
+                            if($(this).hasClass("private")){
+                                $(".formradio-contain").css("display","block");
+                            }
+                            if($(this).hasClass("public")){
+                                $(".formradio-contain").css("display","none");
+                            }
+                            $(".messageIp").text("");
+                        });
+
+                        $(".loginSet-sure").on("click",function () {
+
+                            if($(".formradio input.local").prop("checked")==true){
+                                domain="";                               
+                                uclient.checkDomain(null ,function (seqNo,icode,error,relyBody) {
+                                        if(icode>=0){
+                                            nowSelect="local";                                          
+                                            submit(domain)
+                                        }else{
+                                            $(".messageIp").text(error);
+                                        }
+                                    });
+                            }
+                            if($(".formradio input.private").prop("checked")==true){
+                                var value="",valNull=false,valOne=false;
+                                $(".configInput .ipInput").each(function (i) {
+                                    if(i!=3){
+                                        value=value+$(this).val()+".";
+                                    }else{
+                                        value=value+$(this).val();
+                                    }
+                                    if($(this).val()!=""){
+                                        valOne=true;
+                                    }
+                                    if($(this).val()===""){
+                                        valNull=true;
+                                    }
+                                });
+                                if(valOne==false){
+                                    $(".messageIp").text("IP地址不能为空");
+                                }else if(valNull==true){
+                                    $(".messageIp").text("IP地址格式不正确");
+                                }else{
+                                    uclient.checkDomain(value + ":" + $("#port").val() ,function (seqNo,icode,error,relyBody) {
+                                        if(icode>=0){
+                                            nowSelect="cache";
+                                            domain=value + ":" + $("#port").val();
+                                            submit(domain)
+                                        }else{
+                                            $(".messageIp").text(error);
+                                        }
+                                    });
+                                }
+                            }
+                            if($(".formradio input.public").prop("checked")==true){        
+                                //domain为公有云网址                      
+                                domain="";
+                                nowSelect="cloud";
+                                submit(domain);
+                            }
+                            function submit(domain) {
+                                console.log(nowSelect);
+                                backWait.backWaitIn({
+                                    "homeEle":".loginSet",
+                                    "imgSrc":"../../images/loadingImg.gif",
+                                    "background":"rgba(0,0,0,0.1)"
+                                });
+                                uclient.configConnect(nowSelect,domain,function (seqNo,iCode,error,info) {
+                                    backWait.backWaitOut();
+                                    if(iCode>=0){
+                                        dialog.backDialogIn({
+                                            width:"350px",//宽度
+                                            marginTop:"100px",//
+                                            background:"rgba(0,0,0,0.2)",//背景色
+                                            titleBackground:"#25bc91",//标题栏背景色为空
+                                            sureClose:"../../../common/image/e1.png",//关闭的图片路径
+                                            SureCloseBack:"red",
+                                            h3Text:"配置成功",//文本
+                                            who:".loginSet",//菜单在标签中的位置
+                                            bottomBack:"rgba(140,230,218,0.1)",
+                                            borderBack:"rgba(140,230,218,0.8)",
+                                            aBackground:"#25bc91",
+                                            cancel:"cancelNo"
+                                        });
+                                        $(".backDialog-sure").off("click").one("click",function () {
+                                            dialog.backDialogOut();
+                                            location.href="login.html?"+val+"#cancel";
+                                        });
+                                        $(".backDialog-close").off("click").one("click",function () {
+                                            dialog.backDialogOut();
+                                            uwnd.close("close");
+                                        });
+                                    }else{
+                                        $(".messageIp").text(error);
+                                    }
+                                });
+                            }
+                        });
+
+                    },
+                    error:function () {
+                        uwnd.close("close");
+                    }
+                });
+
+
+
+            });
+        })
+
+    </script>
+</body>
+</html>
