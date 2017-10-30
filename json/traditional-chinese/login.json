@@ -1,0 +1,12 @@
+{
+  "bar1":"設置",
+  "bar2":"最小化",
+  "bar3":"關閉",
+  "image":"login.jpg",
+  "name":"用戶名",
+  "password":"密碼",
+  "in":"登錄",
+  "out":"退出",
+  "logining":"登錄中...",
+  "logindefault":"登錄失敗："
+}

@@ -1,0 +1,67 @@
+{
+  "tool":{
+    "tool1":"Resource Center",
+    "tool2":"head.png",
+    "tool3":"Current user：",
+    "tool4":"LOGIN IP：",
+    "tool5":"Resources",
+    "tool6":"System Tool",
+    "tool7":"Public cloud",
+    "tool8":"Function Daquan",
+    "tool9":"minimize",
+    "tool10":"maximize",
+    "tool11":"close",
+    "tool12":"setUp"
+  },
+  "resource":{
+    "resource1":"Test Channel",
+    "resource2":"Financial Channel",
+    "resource3":"New Channel",
+    "resource4":"New Channel",
+    "resource5":"Resource classification",
+    "resource6":"Bitmap",
+    "resource7":"Animation",
+    "resource8":"Video",
+    "resource9":"Subtitle model",
+    "resource10":"Virtual model",
+    "resource11":"Large screen model",
+    "resource12":"Virtual character model",
+    "resource13":"Video window",
+    "resource14":"Template",
+    "resource15":"Examples",
+    "resource16":"3D object",
+    "resource17":"Subtitle broadcast a single",
+    "resource18":"Virtual broadcast single",
+    "resource19":"My share",
+    "resource20":"View Share",
+    "resource21":"Backward",
+    "resource22":"All files",
+    "resource23":"Search for my resources",
+    "resource24":"Sort",
+    "resource25":"View",
+    "resource26":"tow items",
+    "resource27":"My channel"
+  },
+  "system":{
+    "system1":"User Management",
+    "system2":"Channel Management",
+    "system3":"Log view",
+    "system4":"Service monitoring",
+    "system5":"Audit Process Management",
+    "system6":"Broadcast a single management",
+    "system7":"Log Management",
+    "system8":"change Password"
+  },
+  "power":{
+    "power1":"Function Daquan",
+    "power2":"More efficient features, bring you more intimate experience",
+    "power3":"File Upload",
+    "power4":"File a key to upload",
+    "power5":"Features to help you quickly and easily use the Resource Center, more simple and practical features to enhance your experience",
+    "power6":"Switch site",
+    "power7":"Site key switch",
+    "power8":""
+  }
+
+}
+

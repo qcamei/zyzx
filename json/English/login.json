@@ -1,0 +1,12 @@
+{
+  "bar1":"Settings",
+  "bar2":"minimize",
+  "bar3":"close",
+  "image":"login.jpg",
+  "name":"username",
+  "password":"password",
+  "in":"login",
+  "out":"cancel",
+  "logining":"logging in...",
+  "logindefault":"Login failed："
+}

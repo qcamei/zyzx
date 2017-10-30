@@ -1,0 +1,12 @@
+{
+  "bar1":"设置",
+  "bar2":"最小化",
+  "bar3":"关闭",
+  "image":"login.jpg",
+  "name":"用户名",
+  "password":"密码",
+  "in":"登录",
+  "out":"退出",
+  "logining":"登录中...",
+  "logindefault":"登录失败："
+}

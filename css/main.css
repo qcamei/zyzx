@@ -1,0 +1,205 @@
+html,body{
+    font: 12px Microsoft YaHei, PMingLiU, Verdana, Arial, Helvetica, sans-serif;
+    width:100%;
+    height:100%;
+    /*width: 960px;*/
+    /*height:700px;*/
+    color:#3c3c3c;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+input{
+    outline: none;
+}
+#main{
+    width: 100%;
+    height: 100%;
+    cursor: default;
+    border-radius: 3px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.4);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#toolBar #close.offClose{
+    position: relative;
+    right: 0;
+    top: 0;
+    z-index: 1002;
+}
+#mainTop{
+    width: 100%;
+    height: 115px;
+    background: #56d7b9;
+    border: 1px solid #28b992;
+    box-sizing: border-box;
+}
+
+
+#mainBottom{
+    flex: 1;
+    box-sizing: border-box;
+    border-width:0 1px 1px;
+    border-style: solid;
+    border-color: #999;
+    display: flex;
+    flex-direction: column;
+}
+.offlineBack{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.offlineBack .offlineBack-btn{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 15px 0;
+    border-radius: 4px;
+}
+.offlineBack .offlineBack-btn a{
+    color: #25bc91;
+    font-size: 14px;
+    display: inline-block;
+    padding: 0 10px;
+}
+.offlineBack .offlineBack-btn button{
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 30px;
+    background: #8ce6da;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+}
+.offlineBack .offlineBack-btn button:disabled{
+    opacity: 0.6;
+    background: #8ce6da !important;
+    color: #fff !important;
+}
+.offlineBack .offlineBack-btn button:hover{
+    background: #25bc91;
+    color: #fff;
+}
+.offlineBack .offlineBack-btn button i{
+    font-style: normal;
+    color: #3c3c3c;
+    display: inline-block;
+    padding-left: 5px;
+}
+.offlineBack .offlineBack-btn span{
+    font-size: 14px;
+    color: rgba(255,0,0,0.6);
+    display: inline-block;
+    padding: 0 10px;
+}
+.bucketBack{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+.bucketBack .bucketBack-btn{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: #fff;
+    padding: 15px 30px;
+    border-radius: 4px;
+}
+.bucketBack .bucketBack-btn a{
+    color: #25bc91;
+    font-size: 14px;
+    display: block;
+    padding: 20px 10px;
+}
+.bucketBack .bucketBack-btn button{
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 30px;
+    background: #8ce6da;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+}
+.bucketBack .bucketBack-btn button:hover{
+    background: #28b992;
+}
+.leftListBack{
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*bottom: 0;*/
+    /*top: 0;*/
+    /*right: 0;*/
+    border: none !important;
+    height: 325px !important;
+    background: rgba(0,0,0,0) !important;
+    z-index: 10;
+}
+.leftListBack .leftListBack-btn{
+    margin-top: 50px;
+    padding: 15px 25px;
+    border-radius: 4px;
+}
+.leftListBack .leftListBack-btn a{
+    color: #25bc91;
+    font-size: 14px;
+    display: block;
+    padding: 20px 10px;
+}
+.leftListBack .leftListBack-btn button{
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 30px;
+    background: #8ce6da;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+}
+.leftListBack .leftListBack-btn button:hover{
+    background: #28b992;
+}
+#errorBack{
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    margin: auto;
+    width: 200px;
+    height:200px;
+    text-align: center;
+}
+#errorBack span{
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 12px;
+}
+#errorBack button{
+    outline: none;
+    border: 0;
+    background: transparent;
+    text-decoration: underline;
+}
+#errorBack button:hover{
+    color: #6c8dc7;
+}

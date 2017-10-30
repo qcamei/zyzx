@@ -1,0 +1,292 @@
+html,body{
+    font: 12px Microsoft YaHei, PMingLiU, Verdana, Arial, Helvetica, sans-serif;
+    width:100%;
+    height:100%;
+    /*width: 660px;*/
+    /*height:440px;*/
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+input{
+    outline: none;
+}
+#login{
+    width: 100%;
+    height:100%;
+    background: #f9f9f9;
+    cursor: default;
+    border-radius: 3px;
+    /*box-shadow: 0 1px 8px rgba(0,0,0,0.6);*/
+    position: relative;
+    /*border: 1px solid #999;*/
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.loginTop{
+    height: 80px;
+    background: #28b992;
+    position: relative;
+}
+#toolBar{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+}
+.loginLogo{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    z-index: 2;
+
+}
+.loginLogo-img{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+.loginLogo-img img{
+    max-width: 100%;
+}
+.loginLogo-text{
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 5px;
+}
+.loginLogo-text span{
+    font-size: 16px;
+    color: #fff;
+}
+.loginBottom{
+    flex: 1;
+    display: flex;
+    background: rgba(140,230,218,0.05);
+    position: relative;
+}
+.loginBottom-left{
+    flex:1;
+}
+.loginBackgroud{
+    width: 120px;
+    padding-top: 80px;
+    padding-left: 100px;
+}
+.loginBackgroud-text{
+    text-align: center;
+    padding: 10px 0;
+}
+.loginBackgroud-text h3{
+    padding: 5px 0;
+    color: #28b992;
+}
+.loginBackgroud-text p{
+    padding: 5px 0;
+    color: #8ce6da;
+}
+.loginBackgroud img{
+    max-width: 100%;
+}
+
+.loginBottom-right{
+    flex:1;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+}
+.loginForm{
+    flex: 1;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #8ce6da;
+}
+.loginForm-title{
+    height: 75px;
+    text-align: center;
+}
+.loginForm-title span{
+    display: inline-block;
+    font-size: 18px;
+    color: #3f3f3f;
+    font-weight: 600;
+    padding-top: 20px;
+}
+.loginForm-form{
+    box-sizing: border-box;
+    padding: 0 40px;
+}
+.loginForm-form form{
+
+}
+.loginForm-form .message-login{
+    display: none;
+}
+.loginForm .formPut .labelPut{
+    position: relative;
+}
+.loginForm .formPut .labelPut label{
+    border: 1px solid #56d7b9;
+    display: flex;
+}
+.loginForm .formPut .labelPut label span{
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 4px;
+}
+.labelContain{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.triMenu{
+    width: 15px;
+    height:15px;
+    line-height: 15px;
+    border: 0;
+    outline: none;
+    background: none;
+    display: inline-block;
+    text-align: center;
+}
+.triMenu >span{
+    display: inline-block;
+    width: 0;
+    height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:8px solid #aaa;
+}
+.labelContain .allUserName{
+    list-style: none;
+    width: 195px;
+    text-align: left;
+    position: absolute;
+    right:-5px;
+    top:21px;
+    overflow: auto;
+    max-height:81px;
+    display: none;
+    border-radius:0 0 4px 4px;
+    box-sizing: border-box;
+    background: #fff;
+}
+.allUserName::-webkit-scrollbar {
+    width:5px;
+    height:100%;
+    position: absolute;
+    left: -5px;
+}
+.allUserName::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+.allUserName::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+.labelContain .allUserName li{
+    width: 100%;
+    padding-left: 5px;
+    line-height: 25px;
+    background: #f9f9f9;
+    color: #1a1a1a;
+    border-bottom: 1px solid #fff;
+    box-sizing: border-box;
+}
+.labelContain .allUserName li:hover{
+    background: #f1f1f1;
+    color: #000;
+}
+.labelContain .allUserName .liActive{
+    background: #56d7b9 !important;
+    color: #fff !important;
+}
+.loginForm .formPut >.labelPut input{
+    flex:1;
+    border: 0;
+    line-height: 25px;
+    text-indent: 0.39em;
+    font-size: 16px;
+    color: #1a1a1a;
+}
+.loginForm .formBtn{
+    padding-top: 0;
+    text-align: center;
+}
+.loginForm .formBtn input{
+    width: 227px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    background: #28b992;
+    color: #fff;
+    font-size: 16px;
+    font-family: inherit;
+    border: 0;
+    border-radius: 4px;
+}
+.loginForm .formBtn input:hover,.loginForm .formBtn input:focus{
+    background: #75ddd6;
+}
+#user:disabled,#password:disabled{
+    background: rgb(255,255,255);
+}
+.loginForm .formBtn input:disabled{
+    background: rgba(60,60,60,0.5) !important;
+}
+.checkMessage{
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    font-size: 12px;
+    color: rgb(214,62,41);
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 227px;
+}
+.formcheck{
+   padding: 0 0 5px;
+}
+.formcheck-one,.formcheck-tow,.formcheck-three{
+    display: inline-block;
+    margin-right: 10px;
+}
+.formcheck input{
+    width: 20px;
+    height: 20px;
+}
+.formcheck span{
+    vertical-align: top;
+}
+.formcheck-three{
+    margin-right: 0;
+    vertical-align: top;
+}
+.formcheck-three a{
+    color: #28b992;
+    vertical-align: top;
+}
+.formcheck-three a:hover{
+    text-decoration: underline;
+}
+
+#loginBack{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+    background: rgba(255,255,255,0);
+    display: none;
+}

@@ -1,0 +1,124 @@
+.userMessage{
+    float: left;
+    padding-left: 15px;
+    padding-top: 10px;
+    width: 290px;
+    box-sizing: border-box;
+}
+.userMessage .head-title{
+    font-size: 12px;
+    color: #fff;
+    font-weight: 500;
+    padding-bottom: 12px;
+    padding-left: 25px;
+    background: url(../images/biao.png) no-repeat;
+    background-size: 20px 20px;
+}
+.userMessage .user-head{
+    display: flex;
+}
+.userMessage .user-head .head-img{
+    width: 54px;
+    height:54px;
+    float: left;
+    cursor: pointer;
+    border: 2px solid rgba(16,214,158,0.8);
+}
+.userMessage .user-head .head-img:hover{
+    border: 2px solid rgba(37,188,145,0.6);
+}
+.userMessage .user-head .head-message{
+    float: left;
+    padding-left: 12px;
+    box-sizing: border-box;
+    flex: 1;
+}
+.userMessage .user-head .head-message>h3{
+    font-size: 12px;
+    color: #fff;
+    line-height: 20px;
+    font-weight: 400;
+    margin: 5px 0 8px;
+    padding-left: 6px;
+    display: flex;
+}
+.userMessage .user-head .head-message>h3>a i{
+    display: inline-block;
+    width: 0;
+    height:0;
+    border-left:5px solid transparent;
+    border-right:5px solid transparent;
+    border-top:7px solid #28b992;
+    float: right;
+    margin-top: 6px;
+    margin-right: 5px;
+}
+.userMessage .user-head .head-message>h3>a{
+    font-size: 15px;
+    padding-left: 10px;
+    cursor: pointer;
+    flex: 1;
+    border-radius: 4px;
+}
+.userMessage .user-head .head-message>h3>a:hover{
+    text-decoration: underline;
+    background: rgba(37,188,145,0.2);
+}
+.userMessage .user-head .head-message>span{
+    display: block;
+    width: 100%;
+    background: #25bc91;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #fff;
+    box-sizing: border-box;
+    padding-left: 6px;
+    line-height: 14px;
+}
+.function{
+    margin-left: 30px;
+    padding-top: 24px;
+    float: left;
+}
+.function .tool-list{
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    float: left;
+    margin-right: 15px;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.function .tool-list .tool-list-a{
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    cursor: default;
+}
+.function .tool-list .tool-list-contain{
+    padding-top: 6px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.function .tool-list p{
+    color: #fff;
+    padding-top: 3px;
+}
+.function .tool-list:hover{
+    border-color:rgba(40,185,146,0.45);
+}
+.function .tool-list:hover .tool-list-contain{
+    border-color:#8ce6da;
+    background: rgba(255,255,255,0.25);
+}
+.function .tool-list-active{
+    border-color:rgba(40,185,146,0.45);
+}
+.function .tool-list-active .tool-list-contain{
+    border-color:#8ce6da !important;
+    background: linear-gradient(rgba(117,221,214,0.8) 40%, rgba(255,255,255,0.25) 60%) !important;
+}
